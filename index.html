@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nichole &amp; Kevin — Wedding Binder</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --black:#16171c;
+    --black-soft:#212330;
+    --white:#ffffff;
+    --offwhite:#faf8f6;
+    --line:#e7e2df;
+    --teal:#0f766e;
+    --teal-light:#14b8a6;
+    --teal-bg:#e6f5f3;
+    --purple:#6d28d9;
+    --purple-light:#9d5ce0;
+    --purple-bg:#f2eafc;
+    --text:#232323;
+    --muted:#767585;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Segoe UI',Calibri,-apple-system,Arial,sans-serif;
+    background:var(--offwhite);
+    color:var(--text);
+    display:flex;
+    min-height:100vh;
+  }
+  /* ---------- Sidebar ---------- */
+  #sidebar{
+    width:270px;
+    flex:0 0 270px;
+    background:var(--black);
+    color:#f2f1f6;
+    display:flex;
+    flex-direction:column;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+  }
+  #sidebar .brand{
+    padding:22px 20px 14px 20px;
+    border-bottom:1px solid #2c2e3a;
+  }
+  #sidebar .brand .names{
+    font-family:Georgia,'Times New Roman',serif;
+    font-size:22px;
+    letter-spacing:.5px;
+    color:#fff;
+  }
+  #sidebar .brand .sub{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    color:var(--teal-light);
+    margin-top:4px;
+  }
+  #sidebar nav{flex:1;padding:10px 0 20px 0;}
+  #sidebar .group-title{
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:1.3px;
+    color:#8b8a9a;
+    padding:16px 20px 6px 20px;
+  }
+  #sidebar button.navbtn{
+    display:block;
+    width:100%;
+    text-align:left;
+    background:none;
+    border:none;
+    color:#d8d7e2;
+    padding:9px 20px;
+    font-size:13.5px;
+    cursor:pointer;
+    border-left:3px solid transparent;
+  }
+  #sidebar button.navbtn:hover{background:#20222d;color:#fff;}
+  #sidebar button.navbtn.active{
+    background:linear-gradient(90deg, rgba(20,184,166,.18), rgba(157,92,224,.10));
+    border-left:3px solid var(--teal-light);
+    color:#fff;
+    font-weight:600;
+  }
+  #sidebar .savebox{
+    padding:14px 18px;
+    border-top:1px solid #2c2e3a;
+    font-size:11px;
+    color:#9291a3;
+  }
+  #sidebar .savebox b{color:var(--teal-light);}
+
+  /* ---------- Main ---------- */
+  #main{flex:1;min-width:0;display:flex;flex-direction:column;}
+  #topbar{
+    background:var(--white);
+    border-bottom:1px solid var(--line);
+    padding:14px 34px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    position:sticky;
+    top:0;
+    z-index:5;
+  }
+  #topbar h1{
+    font-family:Georgia,serif;
+    font-size:19px;
+    margin:0;
+    color:var(--black);
+    font-weight:normal;
+  }
+  #topbar .tools{display:flex;gap:8px;flex-wrap:wrap;}
+  .btn{
+    font-size:12.5px;
+    padding:7px 13px;
+    border-radius:6px;
+    border:1px solid var(--line);
+    background:var(--white);
+    color:var(--text);
+    cursor:pointer;
+  }
+  .btn:hover{border-color:var(--teal);color:var(--teal);}
+  .btn.primary{background:var(--teal);border-color:var(--teal);color:#fff;}
+  .btn.primary:hover{background:#0b5c56;color:#fff;}
+  .btn.purple{background:var(--purple);border-color:var(--purple);color:#fff;}
+  .btn.purple:hover{background:#5b21b6;color:#fff;}
+
+  #content{padding:30px 40px 80px 40px;max-width:1000px;}
+  .page{display:none;}
+  .page.active{display:block;}
+
+  .page-head{margin-bottom:22px;border-bottom:2px solid var(--black);padding-bottom:12px;}
+  .page-head h2{
+    font-family:Georgia,serif;
+    font-size:28px;
+    margin:0 0 4px 0;
+    color:var(--black);
+  }
+  .page-head .desc{color:var(--muted);font-size:13.5px;max-width:720px;}
+  .kicker{
+    display:inline-block;
+    font-size:10.5px;
+    letter-spacing:1.4px;
+    text-transform:uppercase;
+    color:var(--purple);
+    background:var(--purple-bg);
+    padding:3px 9px;
+    border-radius:20px;
+    margin-bottom:8px;
+  }
+
+  .card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:22px 24px;
+    margin-bottom:22px;
+  }
+  .card h3{
+    font-size:15px;
+    margin:0 0 14px 0;
+    color:var(--teal);
+    border-bottom:1px solid var(--teal-bg);
+    padding-bottom:8px;
+    text-transform:uppercase;
+    letter-spacing:.6px;
+  }
+  .card h3.purple-h{color:var(--purple);border-bottom-color:var(--purple-bg);}
+  .card p.note{color:var(--muted);font-size:12.5px;margin-top:-8px;margin-bottom:14px;}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px;}
+  .grid.g3{grid-template-columns:1fr 1fr 1fr;}
+  .field{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;}
+  .field label{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;}
+  .field input[type=text],.field input[type=date],.field input[type=tel],.field input[type=email],.field input[type=number],.field select,.field textarea{
+    font-family:inherit;
+    font-size:14px;
+    padding:8px 10px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:var(--offwhite);
+    color:var(--text);
+  }
+  .field textarea{resize:vertical;min-height:70px;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--teal-light);background:#fff;}
+
+  .stat-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:6px;}
+  .stat{
+    flex:1;min-width:120px;
+    background:var(--black);
+    color:#fff;
+    border-radius:10px;
+    padding:14px 16px;
+    text-align:center;
+  }
+  .stat .num{font-size:24px;font-weight:700;color:var(--teal-light);}
+  .stat .lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:#c9c8d6;margin-top:2px;}
+  .stat.purple .num{color:var(--purple-light);}
+
+  .progress-wrap{background:var(--line);border-radius:20px;height:10px;overflow:hidden;margin:6px 0 14px 0;}
+  .progress-bar{height:100%;background:linear-gradient(90deg,var(--teal),var(--purple));width:0%;}
+
+  /* checklist */
+  .group-block{margin-bottom:18px;}
+  .group-block h4{
+    font-size:12.5px;text-transform:uppercase;letter-spacing:.8px;
+    color:#fff;background:var(--black-soft);
+    display:inline-block;padding:4px 12px;border-radius:20px;margin:0 0 10px 0;
+  }
+  .todo-row,.chk-row{
+    display:flex;align-items:flex-start;gap:10px;
+    padding:8px 6px;border-bottom:1px solid var(--offwhite);
+  }
+  .todo-row:hover,.chk-row:hover{background:var(--offwhite);}
+  .todo-row input[type=checkbox],.chk-row input[type=checkbox]{
+    margin-top:3px;width:16px;height:16px;accent-color:var(--teal);flex:0 0 auto;cursor:pointer;
+  }
+  .todo-row.done label,.chk-row.done label{text-decoration:line-through;color:var(--muted);}
+  .todo-row .task{flex:1;min-width:0;}
+  .todo-row label,.chk-row label{font-size:13.5px;cursor:pointer;line-height:1.4;}
+  .tag{
+    display:inline-block;font-size:9.5px;text-transform:uppercase;letter-spacing:.4px;
+    padding:1px 7px;border-radius:10px;margin-left:6px;position:relative;top:-1px;
+  }
+  .tag.owner{background:var(--teal-bg);color:var(--teal);}
+  .tag.priority-high{background:var(--purple-bg);color:var(--purple);}
+  .tag.priority-medium{background:#fdf1de;color:#a8681a;}
+  .tag.priority-low{background:#eef0f2;color:#767585;}
+  .todo-row .noteinput{
+    width:220px;font-size:12px;padding:5px 8px;border:1px solid var(--line);border-radius:5px;background:#fff;flex:0 0 auto;
+  }
+
+  table.datatable{width:100%;border-collapse:collapse;margin-top:4px;}
+  table.datatable th{
+    text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;
+    color:var(--muted);border-bottom:2px solid var(--black);padding:6px 8px;
+  }
+  table.datatable td{padding:4px 6px;border-bottom:1px solid var(--line);vertical-align:middle;}
+  table.datatable input,table.datatable select{
+    width:100%;border:1px solid transparent;background:transparent;font-size:13px;padding:6px 6px;border-radius:5px;font-family:inherit;
+  }
+  table.datatable input:focus,table.datatable select:focus{background:var(--offwhite);border-color:var(--teal-light);outline:none;}
+  table.datatable tr:hover td{background:var(--offwhite);}
+  .rowdel{background:none;border:none;color:#c23;cursor:pointer;font-size:15px;padding:2px 6px;}
+  .addrow-btn{margin-top:10px;}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
+  @media (max-width:820px){.two-col,.three-col,.grid,.grid.g3{grid-template-columns:1fr;}}
+
+  .coord-flag{
+    background:var(--black);color:#fff;border-radius:10px;padding:16px 20px;margin-bottom:20px;
+    display:flex;gap:14px;align-items:center;
+  }
+  .coord-flag .dot{width:10px;height:10px;border-radius:50%;background:var(--teal-light);flex:0 0 auto;}
+  .coord-flag b{color:var(--purple-light);}
+
+  footer.pagefoot{color:var(--muted);font-size:11px;margin-top:28px;text-align:center;}
+
+  /* Print */
+  @media print{
+    #sidebar,#topbar{display:none !important;}
+    body{display:block;}
+    #content{padding:0;max-width:100%;}
+    .page{display:block !important;page-break-after:always;}
+    .card{break-inside:avoid;border:1px solid #ccc;}
+    .btn,.rowdel,.addrow-btn{display:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div class="brand">
+    <div class="names">Nichole &amp; Kevin</div>
+    <div class="sub">Wedding Binder</div>
+  </div>
+  <nav id="navlist"></nav>
+  <div class="savebox" id="savebox">Autosaving to this browser…</div>
+</aside>
+
+<div id="main">
+  <div id="topbar">
+    <h1 id="pagetitle">Welcome</h1>
+    <div class="tools">
+      <button class="btn" onclick="window.print()">🖶 Print This Page</button>
+      <button class="btn" onclick="printAll()">🖶 Print Entire Binder</button>
+      <button class="btn" onclick="exportBackup()">⭳ Export Backup</button>
+      <button class="btn" onclick="document.getElementById('importFile').click()">⭱ Import Backup</button>
+      <input type="file" id="importFile" accept=".json" style="display:none" onchange="importBackup(event)">
+    </div>
+  </div>
+  <div id="content"></div>
+</div>
+
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+
+const SECTIONS = [
+  {group:"Start Here", items:[
+    {id:"welcome", label:"Welcome &amp; How to Use"},
+    {id:"snapshot", label:"Wedding Snapshot"},
+    {id:"couple", label:"About the Couple"},
+  ]},
+  {group:"People", items:[
+    {id:"party", label:"Wedding Party &amp; VIPs"},
+    {id:"vendors", label:"Vendors &amp; Points of Contact"},
+  ]},
+  {group:"Planning", items:[
+    {id:"todo", label:"Timeline &amp; To-Do Checklist"},
+    {id:"budget", label:"Budget"},
+    {id:"guests", label:"Guest List &amp; RSVPs"},
+  ]},
+  {group:"Ceremony &amp; Reception", items:[
+    {id:"ceremony", label:"Ceremony Details"},
+    {id:"reception", label:"Reception Details"},
+    {id:"decor", label:"Décor Checklist"},
+    {id:"stationery", label:"Stationery Checklist"},
+    {id:"photo", label:"Photography &amp; Video"},
+    {id:"music", label:"Music &amp; Entertainment"},
+  ]},
+  {group:"Related Events", items:[
+    {id:"welcomeparty", label:"Welcome Party"},
+    {id:"rehearsal", label:"Rehearsal Dinner"},
+    {id:"brunch", label:"Farewell Brunch"},
+  ]},
+  {group:"Wedding Day", items:[
+    {id:"runofshow", label:"Day-Of Run of Show"},
+    {id:"emergency", label:"Emergency Kit &amp; Night Bags"},
+    {id:"coordinator", label:"For Your Coordinator"},
+  ]},
+  {group:"After", items:[
+    {id:"afterward", label:"After the Wedding"},
+    {id:"honeymoon", label:"Honeymoon"},
+    {id:"notes", label:"Notes"},
+  ]},
+];
+
+// [phase, event, category, task, priority, owner, notes]
+const TODO_RAW = [
+["12+ Months Before","General/Planning","Admin","Set overall wedding budget & contributors","High","Both","Decide who is contributing and how much"],
+["12+ Months Before","General/Planning","Admin","Create a shared wedding planning folder/spreadsheet","Medium","Both",""],
+["12+ Months Before","General/Planning","Admin","Decide on guest count range","High","Both",""],
+["12+ Months Before","General/Planning","Venue","Choose wedding date(s)","High","Both",""],
+["12+ Months Before","General/Planning","Venue","Research & tour ceremony/reception venues","High","Both",""],
+["12+ Months Before","General/Planning","Venue","Book venue & sign contract","High","Both","Confirm payment schedule"],
+["12+ Months Before","General/Planning","Vendors","Research & book wedding planner/coordinator (if using one)","Medium","Both",""],
+["12+ Months Before","General/Planning","Admin","Start a wedding website","Low","Both",""],
+["12+ Months Before","General/Planning","Vendors","Schedule engagement photoshoot","Low","Both",""],
+["12+ Months Before","General/Planning","Admin","Draft preliminary guest list","High","Both",""],
+["12+ Months Before","General/Planning","Color Scheme","Choose colors/floral inspiration & mood board","Medium","Bride",""],
+["9-12 Months Before","General/Planning","Vendors","Book photographer","High","Bride",""],
+["9-12 Months Before","General/Planning","Vendors","Book videographer","Medium","Bride",""],
+["9-12 Months Before","General/Planning","Vendors","Book florist & confirm flower vision/pricing","High","Bride",""],
+["9-12 Months Before","General/Planning","Vendors","Book band or DJ","High","Groom",""],
+["9-12 Months Before","General/Planning","Bridal","Start wedding dress shopping","High","Bride",""],
+["9-12 Months Before","Welcome Party","Venue","Get list of possible ceremony floral/décor locations (archway, barn, etc.)","Low","Bride",""],
+["9-12 Months Before","General/Planning","Wedding Party","Choose & propose to wedding party","High","Bride",""],
+["9-12 Months Before","General/Planning","Wedding Party","Groomsmen proposals","Medium","Groom",""],
+["9-12 Months Before","General/Planning","Wedding Party","Bridesmaids proposal","Medium","Bride",""],
+["9-12 Months Before","General/Planning","Admin","Determine housing/lodging needs for guests","Medium","Both",""],
+["9-12 Months Before","General/Planning","Admin","Communicate housing block to venue/hotel","Medium","Bride",""],
+["9-12 Months Before","General/Planning","Admin","Send Save the Dates","High","Groom",""],
+["9-12 Months Before","General/Planning","Admin","Create Save the Dates","High","Bride",""],
+["6-9 Months Before","General/Planning","F&B","Schedule & attend food tasting","Medium","Both",""],
+["6-9 Months Before","General/Planning","Wedding Party","Choose bridesmaids dresses","Medium","Bride",""],
+["6-9 Months Before","General/Planning","Wedding Party","Choose groomsmen suits","Medium","Groom",""],
+["6-9 Months Before","General/Planning","Bridal","Book hair stylist","Medium","Bride",""],
+["6-9 Months Before","General/Planning","Bridal","Book makeup artist","Medium","Bride",""],
+["6-9 Months Before","General/Planning","Vendors","Confirm florist contract","Medium","Bride",""],
+["6-9 Months Before","General/Planning","Color Scheme","Determine stationery palette","Low","Bride",""],
+["6-9 Months Before","General/Planning","Color Scheme","Order fabric/color swatches","Low","Bride",""],
+["6-9 Months Before","General/Planning","Admin","Finalize guest list","High","Both","Lock the list before invitations go out"],
+["6-9 Months Before","General/Planning","Admin","Collect guest list mailing addresses","Medium","Groom",""],
+["6-9 Months Before","Rehearsal Dinner","Venue","Plan rehearsal dinner (food, decor, headcount, tablescapes)","Medium","Both",""],
+["6-9 Months Before","Welcome Party","Venue","Plan welcome party (decor, headcount, drinks)","Low","Both",""],
+["6-9 Months Before","General/Planning","Misc","Plan mini-moon / honeymoon","Low","Both",""],
+["6-9 Months Before","General/Planning","Vendors","Engagement photos","Low","Both",""],
+["4-6 Months Before","General/Planning","Admin","Create wedding invitations","High","Bride",""],
+["4-6 Months Before","General/Planning","Admin","Order wax seal / invitation extras","Low","Bride",""],
+["4-6 Months Before","General/Planning","Admin","Buy invitation & thank-you card postage stamps","Low","Bride",""],
+["4-6 Months Before","General/Planning","Misc","Buy wedding bands/rings","High","Both",""],
+["4-6 Months Before","General/Planning","Vendors","Create photography mood board / shot list","Low","Bride",""],
+["4-6 Months Before","General/Planning","Vendors","Provide band/DJ with must-play & do-not-play songs","Medium","Bride",""],
+["4-6 Months Before","Reception","Flowers","Decide on floral arrangements & archway design","Medium","Bride",""],
+["4-6 Months Before","General/Planning","Color Scheme","Coordinate attire accents (tablescapes, ties, pocket squares, accessories)","Low","Both",""],
+["4-6 Months Before","General/Planning","Wedding Party","Send housing info to wedding party","Medium","Both",""],
+["4-6 Months Before","General/Planning","Wedding Party","Order wedding party gifts","Low","Both",""],
+["4-6 Months Before","General/Planning","Bridal","First wedding dress fitting","Medium","Bride",""],
+["4-6 Months Before","General/Planning","Admin","Apply for marriage license (check state timing)","High","Both",""],
+["4-6 Months Before","General/Planning","Admin","Create wedding day emergency kit list","Low","Bride","Meds, pins, scissors, tape, hair wax, veil weights"],
+["4-6 Months Before","Farewell Brunch","Venue","Plan farewell brunch (venue, food, headcount)","Low","Both",""],
+["2-4 Months Before","General/Planning","Admin","Send wedding invitations","High","Bride",""],
+["2-4 Months Before","General/Planning","F&B","Finalize bar package","Medium","Groom",""],
+["2-4 Months Before","Reception","F&B","Finalize cocktail menu","Medium","Groom",""],
+["2-4 Months Before","Cocktail Hour","F&B","Finalize cocktail hour menu","Medium","Groom",""],
+["2-4 Months Before","Reception","F&B","Finalize reception menu","Medium","Groom",""],
+["2-4 Months Before","Rehearsal Dinner","F&B","Finalize rehearsal dinner menu & drinks","Medium","Groom",""],
+["2-4 Months Before","Welcome Party","F&B","Finalize welcome party drinks","Low","Groom",""],
+["2-4 Months Before","After Party","F&B","Finalize after party food","Low","Groom",""],
+["2-4 Months Before","General/Planning","F&B","Finalize desserts (cake, s'mores bar, etc.)","Medium","Groom",""],
+["2-4 Months Before","General/Planning","Bridal","Buy rehearsal dinner look","Low","Bride",""],
+["2-4 Months Before","General/Planning","Bridal","Buy after party look","Low","Bride",""],
+["2-4 Months Before","General/Planning","Bridal","Buy farewell brunch look","Low","Bride",""],
+["2-4 Months Before","General/Planning","Vendors","Schedule floral delivery time","Low","Bride",""],
+["2-4 Months Before","Ceremony","Venue","Add ceremony decor (aisle accents)","Low","Bride",""],
+["2-4 Months Before","Ceremony","Venue","Write ceremony program","Low","Bride",""],
+["2-4 Months Before","General/Planning","Guest Experience","Plan welcome gifts / OOT bags","Low","Bride",""],
+["2-4 Months Before","General/Planning","Guest Experience","Plan bathroom goodie baskets","Low","Bride",""],
+["2-4 Months Before","General/Planning","Misc","Start dance lessons (first dance)","Low","Both",""],
+["2-4 Months Before","General/Planning","Admin","Confirm housing/hotel block","Medium","Bride",""],
+["2-4 Months Before","General/Planning","Vendors","Confirm contracts & timelines with all vendors","High","Both",""],
+["6-8 Weeks Before","General/Planning","Bridal","Wedding dress 2nd fitting","Medium","Bride",""],
+["6-8 Weeks Before","General/Planning","Bridal","Finalize accessories (shoes, jewelry, veil)","Low","Bride",""],
+["6-8 Weeks Before","General/Planning","Admin","Write vows","Medium","Both",""],
+["6-8 Weeks Before","General/Planning","Admin","Order vow books","Low","Bride",""],
+["6-8 Weeks Before","General/Planning","F&B","Submit preliminary guest count to caterer","Medium","Groom",""],
+["6-8 Weeks Before","General/Planning","Admin","Buy going away / rehearsal / brunch outfits","Low","Bride",""],
+["6-8 Weeks Before","General/Planning","Vendors","Confirm ceremony music selections","Medium","Both",""],
+["6-8 Weeks Before","General/Planning","Misc","Plan misc. wedding-day items (polaroid cameras, guestbook, etc.)","Low","Bride",""],
+["6-8 Weeks Before","General/Planning","F&B","Finalize dietary restrictions for reception meals","Medium","Groom",""],
+["6-8 Weeks Before","General/Planning","Venue","Confirm delivery & pickup schedule for rentals","Medium","Bride",""],
+["6-8 Weeks Before","General/Planning","Venue","Confirm lighting & greenery with venue/decor team","Low","Bride",""],
+["6-8 Weeks Before","General/Planning","Color Scheme","Order linens","Medium","Bride",""],
+["2-4 Weeks Before","General/Planning","Admin","Finalize seating chart","High","Both",""],
+["2-4 Weeks Before","General/Planning","Admin","Write & print table number cards","Low","Bride",""],
+["2-4 Weeks Before","General/Planning","Admin","Print signage","Low","Bride",""],
+["2-4 Weeks Before","General/Planning","F&B","Submit final guest count to caterer","High","Groom",""],
+["2-4 Weeks Before","General/Planning","Venue","Create final food layout & order count","Medium","Groom",""],
+["2-4 Weeks Before","General/Planning","Admin","Finalize timeline & create vendor call sheet","High","Bride",""],
+["2-4 Weeks Before","General/Planning","Admin","Confirm final logistics with venue coordinator","High","Bride",""],
+["2-4 Weeks Before","General/Planning","Admin","Determine who is giving speeches","Medium","Both",""],
+["2-4 Weeks Before","General/Planning","Admin","Write speech / toast for guests","Medium","Both",""],
+["2-4 Weeks Before","General/Planning","Admin","Write thank-you note to parents","Low","Both",""],
+["2-4 Weeks Before","General/Planning","Wedding Party","Finalize bridal party duties","Medium","Bride",""],
+["2-4 Weeks Before","General/Planning","Wedding Party","Finalize bridal schedule (hair, makeup, photos, etc.)","Medium","Bride",""],
+["2-4 Weeks Before","General/Planning","Wedding Party","Send reminder email to wedding party","Low","Both",""],
+["2-4 Weeks Before","General/Planning","Bridal","Bridal hair trial","Medium","Bride",""],
+["2-4 Weeks Before","General/Planning","Bridal","Bridal makeup trial","Medium","Bride",""],
+["2-4 Weeks Before","General/Planning","Bridal","Final wedding dress fitting","High","Bride",""],
+["1 Week Before","General/Planning","Admin","Pick up marriage license","High","Both",""],
+["1 Week Before","General/Planning","Admin","Confirm ceremony rehearsal time","Medium","Bride",""],
+["1 Week Before","General/Planning","Venue","Create run of show / master timeline","High","Bride",""],
+["1 Week Before","General/Planning","Vendors","Reconfirm all vendor arrival times & contacts","High","Both",""],
+["1 Week Before","General/Planning","Misc","Create wedding day emergency kit","Low","Bride",""],
+["1 Week Before","General/Planning","Admin","Pack for honeymoon","Low","Both",""],
+["1 Week Before","General/Planning","Admin","Delegate day-of point person for vendors/questions","Medium","Both",""],
+["1 Week Before","General/Planning","Guest Experience","Prep welcome bags / bathroom baskets for delivery","Low","Bride",""],
+["Wedding Week/Day-Of","Rehearsal Dinner","Venue","Rehearsal dinner run of show","Medium","Both",""],
+["Wedding Week/Day-Of","Welcome Party","Venue","Welcome party set-up & host duties","Low","Both",""],
+["Wedding Week/Day-Of","Ceremony","Venue","Ceremony rehearsal","High","Both",""],
+["Wedding Week/Day-Of","General/Planning","Bridal","Get married!","High","Bride",""],
+["Wedding Week/Day-Of","Reception","Admin","Distribute final payments/tips to vendors","High","Groom",""],
+["Wedding Week/Day-Of","General/Planning","Admin","Have someone collect gifts/cards at end of night","Medium","Both",""],
+["Wedding Week/Day-Of","Farewell Brunch","Venue","Host farewell brunch","Low","Both",""],
+["After the Wedding","General/Planning","Admin","Write & send thank-you cards","Medium","Both",""],
+["After the Wedding","General/Planning","Admin","Change name on legal documents (if applicable)","Low","Bride",""],
+["After the Wedding","General/Planning","Admin","Return/sell rentals (dress, suit, decor)","Low","Both",""],
+["After the Wedding","General/Planning","Vendors","Leave vendor reviews","Low","Both",""],
+["After the Wedding","General/Planning","Admin","Order/frame favorite wedding photos","Low","Both",""],
+];
+
+const PHOTO_SHOTS = [
+{group:"Getting Ready", items:["Bridal party hair and makeup","Dress hanging","Bouquets","Shoes","The rings","Invitations","Groomsmen getting ready"]},
+{group:"Ceremony", items:["Location shots before guests arrive (aisle, programs, flowers, etc.)","Groom walking down aisle","Groom standing with groomsmen","Ring bearer and flower girl walking up aisle","Bridal party walking up aisle","Bride walking up aisle with escort(s)","Bride and groom at the altar","Bride and groom vows","Exchanging of the rings","Guests watching","The first kiss","Couple walking down the aisle","Receiving line"]},
+{group:"Group Shots", items:["Bride and groom","Bride with parents","Groom with parents","Bride and groom with parents","Bride and groom with parents and siblings","Bride with bridal party","Groom with groomsmen","Full wedding party","Bride with groomsmen","Groom with bridal party","Bride and groom with flower girl and ring bearer"]},
+{group:"Reception", items:["Details before guests arrive (place settings, centerpieces, favors, etc.)","Full tablescapes","Bride and groom chairs","Cake","Guestbook table"]},
+{group:"Other Key Moments", items:["Speeches","Couple reacting to speeches","Cake cutting","First dance","Father-daughter dance","Groom and mother dance","Wedding party dance","Candid shots throughout the party"]},
+];
+
+const DECOR_CEREMONY = ["Ceremony arch / altar structure","Fabric draping / chiffon / tulle","Aisle runner (fabric, floral, petals, rug)","Aisle markers / chair florals","Pew bows / chair ties","Ground florals at altar","Lanterns lining aisle","Candles (pillar, hurricane, LED if required)","Reserved seating signs","Bride's side / groom's side signage","Welcome sign","Ceremony program sign","Order of ceremony sign","Directional signs","Vows book / vow cards","Ring box / holder","Marriage license","Guest book table","Guest book","Pens / markers","Card mail box"];
+
+const DECOR_RECEPTION = ["Welcome to the reception sign","Seating chart display","Place cards","Table number signage","Table linens","Table runners","Table numbers or table names","Centerpieces","Sweetheart table or head table","Floral arrangement/garland for sweetheart table","Chair décor","Custom sign or neon backdrop","Bar sign","Signature drink sign","Cake stand","Cake topper","Cake knife and server","Dessert table signage","Cupcake stands or dessert risers","Favor display table","Favor tags","Polaroid station","Guest book signage","Kids table décor","Send-off supplies (sparklers, petals, ribbon wands)","Bubble or confetti supplies","Exit signage"];
+
+const DECOR_COCKTAIL = ["Bar menus","Bar napkins","Yard games","Appetizer plates / utensils","Cake cutting utensils","Champagne bucket","Dinnerware","Napkins"];
+
+const STATIONERY = [
+{group:"Save the Dates", items:["Save the date cards","Save the date envelopes","Envelope liners","Return address printing","Guest address printing","Postage for save the dates"]},
+{group:"Invitation Suite", items:["Invitation cards","Invitation envelopes","Envelope liners","Outer envelopes","Inner envelopes","Guest address printing","Return address printing","RSVP cards","RSVP envelopes","RSVP return address printing","RSVP postage","Online RSVP insert","Details card","Accommodations card","Weekend events card","Registry card","Dress code card","Map or travel card","Invitation belly bands","Wax seals","Vellum wraps","Invitation ribbons","Postage for invitations","Extra invitation sets (for photos)"]},
+{group:"Ceremony Signage", items:["Welcome sign","Order of ceremony sign","Ceremony program cards","Program fans","Reserved seating signs"]},
+{group:"Reception Stationery", items:["Seating chart","Place cards","Table numbers","Table name cards","Menu cards","Napkin personalization cards","Signature drink signs","Guest book sign","Card and gifts sign","Dessert table sign","Cake flavor sign"]},
+{group:"Venue Signage", items:["Welcome to the wedding sign","Ceremony this way sign","Reception this way sign","QR code signs"]},
+];
+
+const NIGHT_BRIDE = ["Phone charger","Makeup remover","Brush / comb","Shampoo / conditioner","Deodorant","Lotion","Pajamas","Lingerie","Clothes for the next day","Medications","Water bottle","Toothbrush / toothpaste"];
+const NIGHT_GROOM = ["Phone charger","Toothbrush / toothpaste","Brush / comb","Shampoo / conditioner","Deodorant","Pajamas","Clothes for the next day","Water bottle","Medications"];
+
+const EMERGENCY_KIT = ["Marriage license / certificate","Rings (backup check)","Guest book & pens","Tradition items (unity candle, something borrowed, etc.)","Printed vows","Safety pins","Mini sewing kit","Scissors","Fashion / double-sided tape","Stain remover pen","Hairspray & bobby pins","Pain relievers / personal meds","Band-aids","Deodorant","Mints / gum","Tissues","Snacks & water","Phone charger / battery pack","Extra earring backs","Clear nail polish (for runs)","Static guard","Sunscreen (outdoor weddings)"];
+
+const AFTER_WEDDING = ["Write & send thank-you cards","Change name on legal documents (if applicable)","Return / sell rentals (dress, suit, decor)","Leave vendor reviews","Order / frame favorite wedding photos","Preserve bouquet & clean/preserve dress","Cancel or transfer wedding insurance","Confirm all final vendor payments cleared","Share photo gallery link with family & guests","Update accounts, IDs & passport if name changed","Send albums/prints to parents"];
+
+const HONEYMOON_PACK = ["Passports / IDs","Travel documents & boarding passes","Currency / travel card","Chargers & adapters","Medications","Sunscreen & bug spray","Weather-appropriate clothing","Swimwear","Camera","Comfortable shoes","Copies of important documents","Travel insurance info","Confirmation numbers (flights, hotel, car)"];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+const STORAGE_KEY = "np_wedding_binder_v1";
+
+const DEFAULT_STATE = {
+  snapshot:{
+    weddingDateISO:"2027-10-23",
+    brideName:"Nichole",
+    groomName:"Kevin",
+    ceremonyVenue:"",
+    receptionVenue:"",
+    ceremonyTime:"",
+    receptionTime:"",
+    guestCount:"",
+    totalBudget:"",
+    dressCode:"",
+    theme:"",
+    officiant:"",
+    website:"",
+    hashtag:"",
+  },
+  couple:{
+    brideFull:"Nichole", bridePhone:"", brideEmail:"", brideAddr:"",
+    groomFull:"Kevin", groomPhone:"", groomEmail:"", groomAddr:"",
+    story:"",
+    bmomName:"", bmomPhone:"", bdadName:"", bdadPhone:"",
+    gmomName:"", gmomPhone:"", gdadName:"", gdadPhone:"",
+  },
+  tables:{},
+  checklists:{},
+  notes:{},
+  ceremony:{},
+  reception:{},
+  music:{},
+  welcomeparty:{},
+  rehearsal:{},
+  brunch:{},
+  coordinator:{},
+  honeymoon:{},
+};
+
+const TABLE_DEFAULTS = {
+  party: [
+    ["Maid of Honor","","","","",""],["Bridesmaid","","","","",""],["Bridesmaid","","","","",""],
+    ["Bridesmaid","","","","",""],["Bridesmaid","","","","",""],
+    ["Best Man","","","","",""],["Groomsman","","","","",""],["Groomsman","","","","",""],
+    ["Groomsman","","","","",""],["Groomsman","","","","",""],
+    ["Flower Girl","","","","",""],["Ring Bearer","","","","",""],
+    ["Officiant","","","","",""],
+  ],
+  vendors: [
+    ["Wedding Planner / Coordinator","","","","","Pending","No",""],
+    ["Ceremony Venue","","","","","Pending","No",""],
+    ["Reception Venue","","","","","Pending","No",""],
+    ["Officiant","","","","","Pending","No",""],
+    ["Photographer","","","","","Pending","No",""],
+    ["Videographer","","","","","Pending","No",""],
+    ["Caterer / F&B","","","","","Pending","No",""],
+    ["Bar Service","","","","","Pending","No",""],
+    ["Florist","","","","","Pending","No",""],
+    ["Baker / Cake","","","","","Pending","No",""],
+    ["Band / DJ","","","","","Pending","No",""],
+    ["Hair Stylist","","","","","Pending","No",""],
+    ["Makeup Artist","","","","","Pending","No",""],
+    ["Rentals (linens/furniture)","","","","","Pending","No",""],
+    ["Transportation","","","","","Pending","No",""],
+    ["Lodging / Hotel Block","","","","","Pending","No",""],
+    ["Stationery","","","","","Pending","No",""],
+    ["Lighting / Decor","","","","","Pending","No",""],
+  ],
+  budgetByEvent: [
+    ["General/Planning","",""],["Rehearsal Dinner","",""],["Welcome Party","",""],
+    ["Ceremony","",""],["Cocktail Hour","",""],["Reception","",""],
+    ["After Party","",""],["Farewell Brunch","",""],
+  ],
+  whosPaying: [
+    ["Partner 1","","",""],["Partner 2","","",""],["Parents / Family 1","","",""],
+    ["Parents / Family 2","","",""],["Other","","",""],
+  ],
+  vipGuests: [["","","",""]],
+  mealCounts: [["Chicken",""],["Beef",""],["Vegetarian",""],["Kids Meal",""]],
+  processional: [["1","",""],["2","",""],["3","",""]],
+  toasts: [["1","",""],["2","",""],["3","",""]],
+  runofshow_bride: HOURS().map(h=>[h,""]),
+  runofshow_groom: HOURS().map(h=>[h,""]),
+  runofshow_master: HOURS().map(h=>[h,""]),
+  vendorArrivals: [["","",""]],
+};
+
+function HOURS(){
+  const out=[];
+  for(let h=6; h<=21; h++){
+    const label = h<=12 ? (h+" AM") : ((h-12)+" PM");
+    out.push(h===12?"12 PM":label);
+  }
+  return out;
+}
+
+let state = loadState();
+
+function loadState(){
+  let saved = {};
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw) saved = JSON.parse(raw);
+  }catch(e){ console.warn("Could not read saved binder data", e); }
+  const merged = deepMerge(DEFAULT_STATE, saved);
+  if(!merged.tables) merged.tables = {};
+  return merged;
+}
+
+function deepMerge(base, override){
+  if(Array.isArray(base)) return override !== undefined ? override : base;
+  if(base && typeof base === "object"){
+    const result = {...base};
+    if(override && typeof override === "object"){
+      for(const k of Object.keys(override)){
+        result[k] = deepMerge(base[k], override[k]);
+      }
+    }
+    return result;
+  }
+  return override !== undefined ? override : base;
+}
+
+let saveTimer=null;
+function flushSave(){
+  clearTimeout(saveTimer);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  const box = document.getElementById("savebox");
+  if(box){
+    const t = new Date();
+    box.innerHTML = "Saved to this browser at <b>"+t.toLocaleTimeString()+"</b>";
+  }
+}
+function persist(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(flushSave, 250);
+}
+window.addEventListener("beforeunload", flushSave);
+document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState==="hidden") flushSave(); });
+
+function getTable(id){
+  if(!state.tables[id]){
+    state.tables[id] = JSON.parse(JSON.stringify(TABLE_DEFAULTS[id] || [[]]));
+  }
+  return state.tables[id];
+}
+function getChecklist(id){
+  if(!state.checklists[id]) state.checklists[id] = {};
+  return state.checklists[id];
+}
+
+/* ============================================================
+   RENDER HELPERS
+   ============================================================ */
+
+function el(tag, attrs, children){
+  const e = document.createElement(tag);
+  if(attrs) for(const k in attrs){
+    if(k==="html") e.innerHTML = attrs[k];
+    else if(k.startsWith("on")) e.addEventListener(k.slice(2), attrs[k]);
+    else e.setAttribute(k, attrs[k]);
+  }
+  (children||[]).forEach(c=>{ if(c) e.appendChild(c); });
+  return e;
+}
+
+function bindField(pathParts){
+  // returns {get, set} for state via array of keys
+  return {
+    get(){ let o=state; for(const p of pathParts) o=o?.[p]; return o ?? ""; },
+    set(v){ let o=state; for(let i=0;i<pathParts.length-1;i++) o=o[pathParts[i]]; o[pathParts[pathParts.length-1]]=v; persist(); }
+  };
+}
+
+function textField(container, label, pathParts, type, opts){
+  type = type || "text";
+  const wrap = el("div",{class:"field"});
+  wrap.appendChild(el("label",{},[document.createTextNode(label)]));
+  let input;
+  if(type==="textarea"){
+    input = el("textarea",opts||{});
+  } else {
+    input = el("input",Object.assign({type:type},opts||{}));
+  }
+  const b = bindField(pathParts);
+  input.value = b.get();
+  input.addEventListener("input", ()=>b.set(input.value));
+  wrap.appendChild(input);
+  container.appendChild(wrap);
+  return input;
+}
+
+function renderSimpleChecklist(container, listId, groups, showAddNote){
+  const cl = getChecklist(listId);
+  groups.forEach((g, gi)=>{
+    const block = el("div",{class:"group-block"});
+    block.appendChild(el("h4",{},[document.createTextNode(g.group)]));
+    g.items.forEach((item,ii)=>{
+      const slug = gi+"_"+ii;
+      const row = el("div",{class:"chk-row"+(cl[slug]?" done":"")});
+      const cb = el("input",{type:"checkbox", id:listId+"_"+slug});
+      cb.checked = !!cl[slug];
+      cb.addEventListener("change", ()=>{
+        cl[slug]=cb.checked;
+        row.classList.toggle("done",cb.checked);
+        persist();
+      });
+      const lbl = el("label",{for:listId+"_"+slug},[document.createTextNode(item)]);
+      row.appendChild(cb); row.appendChild(lbl);
+      block.appendChild(row);
+    });
+    container.appendChild(block);
+  });
+}
+
+function renderTodoList(container){
+  const cl = getChecklist("todo");
+  const notes = state.notes.todo || (state.notes.todo = {});
+  let currentPhase = null;
+  let block = null;
+  TODO_RAW.forEach((row, i)=>{
+    const [phase, eventName, category, task, priority, owner, defaultNote] = row;
+    if(phase !== currentPhase){
+      currentPhase = phase;
+      block = el("div",{class:"group-block"});
+      block.appendChild(el("h4",{},[document.createTextNode(phase)]));
+      container.appendChild(block);
+    }
+    const slug = "t"+i;
+    const rowEl = el("div",{class:"todo-row"+(cl[slug]?" done":"")});
+    const cb = el("input",{type:"checkbox", id:"todo_"+slug});
+    cb.checked = !!cl[slug];
+    cb.addEventListener("change", ()=>{
+      cl[slug]=cb.checked;
+      rowEl.classList.toggle("done", cb.checked);
+      updateTodoProgress();
+      persist();
+    });
+    const taskWrap = el("div",{class:"task"});
+    const lbl = el("label",{for:"todo_"+slug});
+    lbl.innerHTML = task
+      + ' <span class="tag owner">'+owner+'</span>'
+      + ' <span class="tag priority-'+priority.toLowerCase()+'">'+priority+'</span>'
+      + (eventName!=="General/Planning" ? ' <span class="tag owner" style="background:var(--purple-bg);color:var(--purple)">'+eventName+'</span>' : '');
+    taskWrap.appendChild(lbl);
+    const noteInput = el("input",{type:"text", class:"noteinput", placeholder: defaultNote || "notes / date"});
+    noteInput.value = notes[slug] ?? "";
+    noteInput.addEventListener("input", ()=>{ notes[slug]=noteInput.value; persist(); });
+    rowEl.appendChild(cb); rowEl.appendChild(taskWrap); rowEl.appendChild(noteInput);
+    block.appendChild(rowEl);
+  });
+}
+
+function updateTodoProgress(){
+  const cl = getChecklist("todo");
+  const done = Object.values(cl).filter(Boolean).length;
+  const total = TODO_RAW.length;
+  const bar = document.getElementById("todoProgressBar");
+  const lbl = document.getElementById("todoProgressLabel");
+  if(bar){ bar.style.width = Math.round(done/total*100)+"%"; }
+  if(lbl){ lbl.textContent = done+" of "+total+" tasks complete ("+Math.round(done/total*100)+"%)"; }
+}
+
+function renderTable(container, tableId, columns, opts){
+  opts = opts || {};
+  const rows = getTable(tableId);
+  const wrap = el("div",{style:"overflow-x:auto"});
+  const table = el("table",{class:"datatable"});
+  const thead = el("thead");
+  const trh = el("tr");
+  columns.forEach(c=> trh.appendChild(el("th",{},[document.createTextNode(c.label)])) );
+  if(!opts.noDelete) trh.appendChild(el("th",{},[]));
+  thead.appendChild(trh); table.appendChild(thead);
+  const tbody = el("tbody");
+
+  function renderRows(){
+    tbody.innerHTML = "";
+    rows.forEach((rowArr, ri)=>{
+      const tr = el("tr");
+      columns.forEach((c, ci)=>{
+        const td = el("td");
+        let field;
+        if(c.type==="select"){
+          field = el("select");
+          (c.options||[]).forEach(optVal=>{
+            const o = el("option",{value:optVal},[document.createTextNode(optVal)]);
+            if(rowArr[ci]===optVal) o.selected=true;
+            field.appendChild(o);
+          });
+        } else {
+          field = el("input",{type:c.type||"text", readonly: c.readonly?"readonly":null});
+          field.value = rowArr[ci] ?? "";
+        }
+        field.addEventListener("input", ()=>{ rowArr[ci]=field.value; persist(); });
+        field.addEventListener("change", ()=>{ rowArr[ci]=field.value; persist(); });
+        td.appendChild(field);
+        tr.appendChild(td);
+      });
+      if(!opts.noDelete){
+        const td = el("td");
+        const del = el("button",{class:"rowdel", title:"Remove row", onclick:()=>{
+          rows.splice(ri,1); persist(); renderRows();
+        }},[document.createTextNode("✕")]);
+        td.appendChild(del);
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    });
+  }
+  renderRows();
+  table.appendChild(tbody);
+  wrap.appendChild(table);
+  container.appendChild(wrap);
+
+  if(!opts.noAdd){
+    const addBtn = el("button",{class:"btn addrow-btn", onclick:()=>{
+      rows.push(columns.map(()=>""));
+      persist();
+      renderRows();
+    }},[document.createTextNode("+ Add Row")]);
+    container.appendChild(addBtn);
+  }
+}
+
+/* ============================================================
+   PAGE BUILDERS
+   ============================================================ */
+const PAGE_BUILDERS = {};
+
+PAGE_BUILDERS.welcome = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Start Here")]),
+    el("h2",{},[document.createTextNode("Welcome to Our Wedding Binder")]),
+    el("div",{class:"desc"},[document.createTextNode("This is the master resource for Nichole & Kevin's wedding — budget, contracts, contacts, checklists, and every detail your Month-Of Coordinator needs to run the day without asking us a thing.")]),
+  ]));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("How This Binder Works")]));
+  const ul = el("div");
+  ul.innerHTML = "<p style='font-size:13.5px;line-height:1.7'>"+
+    "• Use the menu on the left to move between sections.<br>"+
+    "• Everything you type is <b>saved automatically</b> in this browser, on this computer, tied to this exact file.<br>"+
+    "• It does <b>not</b> sync to other devices or browsers — click <b>Export Backup</b> regularly (top right) to save a copy, and use <b>Import Backup</b> to restore it later or on another device.<br>"+
+    "• Use <b>Print This Page</b> or <b>Print Entire Binder</b> any time you want a paper or PDF copy — great for handing physical pages to vendors or your coordinator.<br>"+
+    "• The full row-by-row <b>guest list</b> and itemized <b>line-by-line budget</b> live in the companion spreadsheets in the same folder — this binder holds the summaries and everything else.</p>";
+  card.appendChild(ul);
+  c.appendChild(card);
+
+  const card2 = el("div",{class:"card"});
+  card2.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Companion Files (Same Folder)")]));
+  card2.innerHTML += "<p style='font-size:13.5px;line-height:1.8'>"+
+    "📊 <b>-MAKE A COPY- 2026 Wedding Planning.xlsx</b> — full to-do list, budget tracker, guest list & RSVP tracker, vendor tracker<br>"+
+    "📒 <b>Bridal_Guide_JV.xlsx</b> — stationery, décor, bridal party, wedding day & honeymoon notes<br>"+
+    "📄 Printable checklist / timeline / vendor / photography PDFs — used as source inspiration for this binder</p>";
+  c.appendChild(card2);
+
+  const flag = el("div",{class:"coord-flag"});
+  flag.innerHTML = "<span class='dot'></span><div>Handing this to your <b>Month-Of Coordinator?</b> Send them straight to the <b>“For Your Coordinator”</b> section — it summarizes everything else in this binder in one place.</div>";
+  c.appendChild(flag);
+};
+
+PAGE_BUILDERS.snapshot = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Start Here")]),
+    el("h2",{},[document.createTextNode("Wedding Snapshot")]),
+    el("div",{class:"desc"},[document.createTextNode("The at-a-glance facts — this is the page vendors and your coordinator should see first.")]),
+  ]));
+
+  const statRow = el("div",{class:"stat-row",id:"snapStats"});
+  c.appendChild(statRow);
+
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("Key Details")]));
+  const grid = el("div",{class:"grid"});
+  const dateInput = textField(grid,"Wedding Date",["snapshot","weddingDateISO"],"date");
+  dateInput.addEventListener("input", refreshSnapshotStats);
+  textField(grid,"Bride / Partner 1",["snapshot","brideName"],"text");
+  textField(grid,"Groom / Partner 2",["snapshot","groomName"],"text");
+  textField(grid,"Ceremony Venue",["snapshot","ceremonyVenue"],"text");
+  textField(grid,"Reception Venue",["snapshot","receptionVenue"],"text",{placeholder:"same as ceremony, if applicable"});
+  textField(grid,"Ceremony Time",["snapshot","ceremonyTime"],"text",{placeholder:"e.g. 4:00 PM"});
+  textField(grid,"Reception Time",["snapshot","receptionTime"],"text",{placeholder:"e.g. 6:00 PM"});
+  textField(grid,"Estimated Guest Count",["snapshot","guestCount"],"number");
+  textField(grid,"Total Wedding Budget ($)",["snapshot","totalBudget"],"number");
+  textField(grid,"Dress Code",["snapshot","dressCode"],"text");
+  textField(grid,"Colors / Theme",["snapshot","theme"],"text");
+  textField(grid,"Officiant",["snapshot","officiant"],"text");
+  textField(grid,"Wedding Website",["snapshot","website"],"text");
+  textField(grid,"Wedding Hashtag",["snapshot","hashtag"],"text");
+  card.appendChild(grid);
+  c.appendChild(card);
+
+  refreshSnapshotStats();
+};
+
+function refreshSnapshotStats(){
+  const box = document.getElementById("snapStats");
+  if(!box) return;
+  box.innerHTML="";
+  const iso = state.snapshot.weddingDateISO;
+  let daysLeft = "—", niceDate="Not set";
+  if(iso){
+    const wed = new Date(iso+"T00:00:00");
+    const now = new Date(); now.setHours(0,0,0,0);
+    daysLeft = Math.round((wed-now)/86400000);
+    niceDate = wed.toLocaleDateString(undefined,{weekday:"long", year:"numeric", month:"long", day:"numeric"});
+  }
+  const stats = [
+    [daysLeft, daysLeft===1? "Day To Go" : "Days To Go", false],
+    [niceDate, "Wedding Date", true],
+    [state.snapshot.guestCount || "—", "Estimated Guests", false],
+    [state.snapshot.totalBudget ? "$"+Number(state.snapshot.totalBudget).toLocaleString() : "—", "Total Budget", true],
+  ];
+  stats.forEach(([num,lbl,purple])=>{
+    box.appendChild(el("div",{class:"stat"+(purple?" purple":"")},[
+      el("div",{class:"num", style: typeof num==="string" && num.length>10 ? "font-size:15px":""},[document.createTextNode(num)]),
+      el("div",{class:"lbl"},[document.createTextNode(lbl)]),
+    ]));
+  });
+}
+
+PAGE_BUILDERS.couple = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Start Here")]),
+    el("h2",{},[document.createTextNode("About the Couple")]),
+  ]));
+  const two = el("div",{class:"two-col"});
+  const bcard = el("div",{class:"card"});
+  bcard.appendChild(el("h3",{},[document.createTextNode("Bride / Partner 1")]));
+  textField(bcard,"Full Name",["couple","brideFull"],"text");
+  textField(bcard,"Phone",["couple","bridePhone"],"tel");
+  textField(bcard,"Email",["couple","brideEmail"],"email");
+  textField(bcard,"Address",["couple","brideAddr"],"text");
+  two.appendChild(bcard);
+
+  const gcard = el("div",{class:"card"});
+  gcard.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Groom / Partner 2")]));
+  textField(gcard,"Full Name",["couple","groomFull"],"text");
+  textField(gcard,"Phone",["couple","groomPhone"],"tel");
+  textField(gcard,"Email",["couple","groomEmail"],"email");
+  textField(gcard,"Address",["couple","groomAddr"],"text");
+  two.appendChild(gcard);
+  c.appendChild(two);
+
+  const parents = el("div",{class:"card"});
+  parents.appendChild(el("h3",{},[document.createTextNode("Parents")]));
+  const pgrid = el("div",{class:"grid g3"});
+  textField(pgrid,"Bride's Mother",["couple","bmomName"],"text");
+  textField(pgrid,"Phone",["couple","bmomPhone"],"tel");
+  textField(pgrid,"",["couple","_sp1"],"text",{style:"visibility:hidden"});
+  textField(pgrid,"Bride's Father",["couple","bdadName"],"text");
+  textField(pgrid,"Phone",["couple","bdadPhone"],"tel");
+  textField(pgrid,"",["couple","_sp2"],"text",{style:"visibility:hidden"});
+  textField(pgrid,"Groom's Mother",["couple","gmomName"],"text");
+  textField(pgrid,"Phone",["couple","gmomPhone"],"tel");
+  textField(pgrid,"",["couple","_sp3"],"text",{style:"visibility:hidden"});
+  textField(pgrid,"Groom's Father",["couple","gdadName"],"text");
+  textField(pgrid,"Phone",["couple","gdadPhone"],"tel");
+  parents.appendChild(pgrid);
+  c.appendChild(parents);
+
+  const story = el("div",{class:"card"});
+  story.appendChild(el("h3",{},[document.createTextNode("Our Story (optional)")]));
+  story.appendChild(el("p",{class:"note"},[document.createTextNode("How you met, the proposal — nice to have on hand for the officiant, toasts, or your wedding website.")]));
+  textField(story,"Our Story",["couple","story"],"textarea",{rows:5});
+  c.appendChild(story);
+};
+
+PAGE_BUILDERS.party = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("People")]),
+    el("h2",{},[document.createTextNode("Wedding Party & VIPs")]),
+    el("div",{class:"desc"},[document.createTextNode("Bridesmaids, groomsmen, and key family — contact info in one place for both of you and your coordinator.")]),
+  ]));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("Wedding Party & Family Roster")]));
+  renderTable(card,"party",[
+    {label:"Role"},{label:"Name"},{label:"Phone"},{label:"Email"},{label:"Address"},{label:"Attire / Sizes / Notes"},
+  ]);
+  c.appendChild(card);
+};
+
+PAGE_BUILDERS.vendors = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("People")]),
+    el("h2",{},[document.createTextNode("Vendors & Points of Contact")]),
+    el("div",{class:"desc"},[document.createTextNode("Every vendor, contract, and payment status at a glance.")]),
+  ]));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("Vendor Master List")]));
+  renderTable(card,"vendors",[
+    {label:"Category"},{label:"Vendor / Business"},{label:"Contact Person"},{label:"Phone"},{label:"Email"},
+    {label:"Contract", type:"select", options:["Pending","Signed","N/A"]},
+    {label:"Deposit Paid", type:"select", options:["No","Yes","N/A"]},
+    {label:"Notes"},
+  ]);
+  c.appendChild(card);
+};
+
+PAGE_BUILDERS.todo = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Planning")]),
+    el("h2",{},[document.createTextNode("Timeline & To-Do Checklist")]),
+    el("div",{class:"desc"},[document.createTextNode("120 tasks organized by how far out they are — check things off as you go. Owner tags show who's driving each task.")]),
+  ]));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("div",{class:"progress-wrap"},[el("div",{class:"progress-bar", id:"todoProgressBar"})]));
+  card.appendChild(el("div",{id:"todoProgressLabel", style:"font-size:12px;color:var(--muted);margin-bottom:14px"}));
+  renderTodoList(card);
+  c.appendChild(card);
+  updateTodoProgress();
+};
+
+PAGE_BUILDERS.budget = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Planning")]),
+    el("h2",{},[document.createTextNode("Budget")]),
+    el("div",{class:"desc"},[document.createTextNode("Big-picture totals by event. For the full line-item budget (every vendor, every cost), use the Budget Tracker tab in the companion spreadsheet.")]),
+  ]));
+  const card1 = el("div",{class:"card"});
+  card1.appendChild(el("h3",{},[document.createTextNode("Budget by Event")]));
+  card1.appendChild(el("p",{class:"note"},[document.createTextNode("Rough estimated vs. actual cost per event — pulls from the same categories as the spreadsheet's budget tracker.")]));
+  renderTable(card1,"budgetByEvent",[{label:"Event"},{label:"Estimated ($)",type:"number"},{label:"Actual ($)",type:"number"}]);
+  c.appendChild(card1);
+
+  const card2 = el("div",{class:"card"});
+  card2.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Who's Paying for What")]));
+  renderTable(card2,"whosPaying",[{label:"Contributor"},{label:"Amount Pledged ($)",type:"number"},{label:"Amount Received ($)",type:"number"},{label:"Notes"}]);
+  c.appendChild(card2);
+};
+
+PAGE_BUILDERS.guests = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Planning")]),
+    el("h2",{},[document.createTextNode("Guest List & RSVPs")]),
+    el("div",{class:"desc"},[document.createTextNode("The full row-by-row guest list lives in the Guest List Tracker tab of the companion spreadsheet (built for 100+ rows). Track your headline numbers here.")]),
+  ]));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("RSVP Counts")]));
+  const grid = el("div",{class:"grid g3"});
+  textField(grid,"Total Invited",["snapshot","guestCount"],"number");
+  ["Attending","Declined","Pending RSVP","Save-the-Dates Sent","Invites Sent"].forEach(label=>{
+    const key = label.toLowerCase().replace(/[^a-z]/g,"");
+    textField(grid,label,["notes","guestStat_"+key],"number");
+  });
+  card.appendChild(grid);
+  c.appendChild(card);
+
+  const card2 = el("div",{class:"card"});
+  card2.appendChild(el("h3",{},[document.createTextNode("Meal Count Summary")]));
+  renderTable(card2,"mealCounts",[{label:"Meal Choice"},{label:"Count",type:"number"}]);
+  c.appendChild(card2);
+
+  const card3 = el("div",{class:"card"});
+  card3.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("VIP / Must-Invite List")]));
+  card3.appendChild(el("p",{class:"note"},[document.createTextNode("Anyone whose RSVP status you want to track by name without opening the spreadsheet.")]));
+  renderTable(card3,"vipGuests",[{label:"Name"},{label:"Side"},{label:"Group"},{label:"RSVP / Notes"}]);
+  c.appendChild(card3);
+};
+
+PAGE_BUILDERS.ceremony = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Ceremony & Reception")]),
+    el("h2",{},[document.createTextNode("Ceremony Details")]),
+  ]));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("Ceremony Basics")]));
+  const grid = el("div",{class:"grid"});
+  textField(grid,"Venue Contact Name",["ceremony","venueContactName"],"text");
+  textField(grid,"Venue Contact Phone",["ceremony","venueContactPhone"],"tel");
+  textField(grid,"Officiant Phone",["ceremony","officiantPhone"],"tel");
+  textField(grid,"Start / End Time",["ceremony","startEnd"],"text",{placeholder:"e.g. 4:00 – 4:30 PM"});
+  card.appendChild(grid);
+  c.appendChild(card);
+
+  const card2 = el("div",{class:"card"});
+  card2.appendChild(el("h3",{},[document.createTextNode("Processional / Readings / Vows Order")]));
+  renderTable(card2,"processional",[{label:"Order"},{label:"Person / Role"},{label:"Reading, Song, or Moment"}]);
+  c.appendChild(card2);
+
+  const card3 = el("div",{class:"card"});
+  card3.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Items Required")]));
+  renderSimpleChecklist(card3,"ceremonyItems",[{group:"Checklist", items:["Marriage license / certificate","Rings","Guest book & pens","Tradition requirements (unity candle, something borrowed, etc.)","Written vows","Seating arranged","Bouquets & boutonnieres","Flower girl petals","Signs","Programs","Confetti / favors","Decorations","Lighting","Sound system / music requirements"]}]);
+  c.appendChild(card3);
+
+  const card4 = el("div",{class:"card"});
+  card4.appendChild(el("h3",{},[document.createTextNode("Ceremony Music")]));
+  const g4 = el("div",{class:"grid"});
+  textField(g4,"Guest Arrival Ambience",["ceremony","musicArrival"],"text");
+  textField(g4,"Bridal Party Entrance",["ceremony","musicEntrance"],"text");
+  textField(g4,"Bride Walking Down Aisle",["ceremony","musicAisle"],"text");
+  textField(g4,"Recessional / Exit",["ceremony","musicExit"],"text");
+  card4.appendChild(g4);
+  c.appendChild(card4);
+};
+
+PAGE_BUILDERS.reception = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Ceremony & Reception")]),
+    el("h2",{},[document.createTextNode("Reception Details")]),
+  ]));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("Menus")]));
+  const grid = el("div",{class:"grid"});
+  textField(grid,"Cocktail Hour Menu",["reception","cocktailMenu"],"textarea",{rows:3});
+  textField(grid,"Dinner Menu",["reception","dinnerMenu"],"textarea",{rows:3});
+  textField(grid,"Dessert / Cake",["reception","dessert"],"textarea",{rows:3});
+  textField(grid,"Bar Package",["reception","bar"],"textarea",{rows:3});
+  card.appendChild(grid);
+  c.appendChild(card);
+
+  const card2 = el("div",{class:"card"});
+  card2.appendChild(el("h3",{},[document.createTextNode("Seating Chart Notes")]));
+  textField(card2,"Notes (layout, table count, special seating needs)",["reception","seating"],"textarea",{rows:4});
+  c.appendChild(card2);
+
+  const card3 = el("div",{class:"card"});
+  card3.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Toasts & Speeches Order")]));
+  renderTable(card3,"toasts",[{label:"Order"},{label:"Name"},{label:"Relationship to Couple"}]);
+  c.appendChild(card3);
+};
+
+PAGE_BUILDERS.decor = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Ceremony & Reception")]),
+    el("h2",{},[document.createTextNode("Décor Checklist")]),
+  ]));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("Ceremony Décor")]));
+  renderSimpleChecklist(card,"decorCeremony",[{group:"Ceremony", items:DECOR_CEREMONY}]);
+  c.appendChild(card);
+
+  const card2 = el("div",{class:"card"});
+  card2.appendChild(el("h3",{},[document.createTextNode("Reception Décor")]));
+  renderSimpleChecklist(card2,"decorReception",[{group:"Reception", items:DECOR_RECEPTION}]);
+  c.appendChild(card2);
+
+  const card3 = el("div",{class:"card"});
+  card3.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Cocktail Hour")]));
+  renderSimpleChecklist(card3,"decorCocktail",[{group:"Cocktail Hour", items:DECOR_COCKTAIL}]);
+  c.appendChild(card3);
+};
+
+PAGE_BUILDERS.stationery = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Ceremony & Reception")]),
+    el("h2",{},[document.createTextNode("Stationery Checklist")]),
+  ]));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("Every Piece of Paper")]));
+  renderSimpleChecklist(card,"stationery",STATIONERY);
+  c.appendChild(card);
+};
+
+PAGE_BUILDERS.photo = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Ceremony & Reception")]),
+    el("h2",{},[document.createTextNode("Photography & Video")]),
+    el("div",{class:"desc"},[document.createTextNode("Hand your photographer this shot list — check off must-haves as you review them together.")]),
+  ]));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("Shot List")]));
+  renderSimpleChecklist(card,"photoShots",PHOTO_SHOTS);
+  c.appendChild(card);
+
+  const card2 = el("div",{class:"card"});
+  card2.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Photographer / Videographer Notes")]));
+  textField(card2,"Must-have shots, styles, family combos, restrictions, etc.",["notes","photoNotes"],"textarea",{rows:5});
+  c.appendChild(card2);
+};
+
+PAGE_BUILDERS.music = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Ceremony & Reception")]),
+    el("h2",{},[document.createTextNode("Music & Entertainment")]),
+  ]));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("Key Songs")]));
+  const grid = el("div",{class:"grid"});
+  textField(grid,"Bridal Party Entrance",["music","entrance"],"text");
+  textField(grid,"Bride's Entrance",["music","brideEntrance"],"text");
+  textField(grid,"First Dance",["music","firstDance"],"text");
+  textField(grid,"Father-Daughter Dance",["music","fatherDaughter"],"text");
+  textField(grid,"Mother-Son Dance",["music","motherSon"],"text");
+  textField(grid,"Cake Cutting",["music","cakeCutting"],"text");
+  textField(grid,"Bouquet / Garter Toss",["music","toss"],"text");
+  textField(grid,"Last Dance / Send-Off",["music","lastDance"],"text");
+  textField(grid,"Reception Exit Song",["music","exitSong"],"text");
+  card.appendChild(grid);
+  c.appendChild(card);
+
+  const card2 = el("div",{class:"card"});
+  card2.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("For the DJ / Band")]));
+  const grid2 = el("div",{class:"two-col"});
+  textField(grid2,"Must-Play List",["music","mustPlay"],"textarea",{rows:6});
+  textField(grid2,"Do-Not-Play List",["music","doNotPlay"],"textarea",{rows:6});
+  card2.appendChild(grid2);
+  c.appendChild(card2);
+};
+
+function simpleEventPage(id, title, extraFieldsFn){
+  return (c)=>{
+    c.appendChild(el("div",{class:"page-head"},[
+      el("span",{class:"kicker"},[document.createTextNode("Related Events")]),
+      el("h2",{},[document.createTextNode(title)]),
+    ]));
+    const card = el("div",{class:"card"});
+    card.appendChild(el("h3",{},[document.createTextNode("Details")]));
+    const grid = el("div",{class:"grid"});
+    textField(grid,"Date",["snapshot","_x"+id],"text",{style:"display:none"});
+    textField(grid,"Date & Time",[id,"datetime"],"text");
+    textField(grid,"Location",[id,"location"],"text");
+    textField(grid,"Host(s)",[id,"host"],"text");
+    textField(grid,"Headcount",[id,"headcount"],"number");
+    card.appendChild(grid);
+    textField(card,"Menu / Drinks Notes",[id,"menu"],"textarea",{rows:3});
+    c.appendChild(card);
+    const card2 = el("div",{class:"card"});
+    card2.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Run of Show")]));
+    textField(card2,"What happens, in order",[id,"runofshow"],"textarea",{rows:5});
+    c.appendChild(card2);
+  };
+}
+PAGE_BUILDERS.welcomeparty = simpleEventPage("welcomeparty","Welcome Party");
+PAGE_BUILDERS.rehearsal = simpleEventPage("rehearsal","Rehearsal Dinner");
+PAGE_BUILDERS.brunch = simpleEventPage("brunch","Farewell Brunch");
+
+PAGE_BUILDERS.runofshow = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Wedding Day")]),
+    el("h2",{},[document.createTextNode("Day-Of Run of Show")]),
+    el("div",{class:"desc"},[document.createTextNode("A sample framework below, then three fillable hour-by-hour timelines — for the bride's side, the groom's side, and the master/vendor-facing schedule.")]),
+  ]));
+  const sample = el("div",{class:"card"});
+  sample.appendChild(el("h3",{},[document.createTextNode("Sample Day-Of Framework")]));
+  sample.innerHTML += "<p style='font-size:13px;line-height:2'>"+
+    "10:00 AM — Preparation for ceremony &nbsp;·&nbsp; 2:00 PM — Family & bridal party portraits &nbsp;·&nbsp; 3:00 PM — Pre-ceremony photography<br>"+
+    "4:00 PM — Ceremony &nbsp;·&nbsp; 5:00 PM — Cocktail hour &nbsp;·&nbsp; 6:00 PM — Reception begins &nbsp;·&nbsp; 6:30 PM — Dinner served<br>"+
+    "7:00 PM — Bridal portraits &nbsp;·&nbsp; 7:30 PM — First dances &nbsp;·&nbsp; 8:00 PM — Toasts &nbsp;·&nbsp; 8:30 PM — Cake cutting<br>"+
+    "9:00 PM — Garter & bouquet toss &nbsp;·&nbsp; 10:00 PM — Last dance & send-off</p>";
+  c.appendChild(sample);
+
+  const b1 = el("div",{class:"card"});
+  b1.appendChild(el("h3",{},[document.createTextNode("Bride & Bridal Party Timeline")]));
+  renderTable(b1,"runofshow_bride",[{label:"Time",readonly:true},{label:"Activity"}]);
+  c.appendChild(b1);
+
+  const b2 = el("div",{class:"card"});
+  b2.appendChild(el("h3",{},[document.createTextNode("Groom & Groomsmen Timeline")]));
+  renderTable(b2,"runofshow_groom",[{label:"Time",readonly:true},{label:"Activity"}]);
+  c.appendChild(b2);
+
+  const b3 = el("div",{class:"card"});
+  b3.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Master / Vendor-Facing Timeline")]));
+  renderTable(b3,"runofshow_master",[{label:"Time",readonly:true},{label:"Activity"}]);
+  c.appendChild(b3);
+};
+
+PAGE_BUILDERS.emergency = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Wedding Day")]),
+    el("h2",{},[document.createTextNode("Emergency Kit & Wedding Night Bags")]),
+  ]));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("Wedding Day Emergency Kit")]));
+  renderSimpleChecklist(card,"emergencyKit",[{group:"Pack This", items:EMERGENCY_KIT}]);
+  c.appendChild(card);
+
+  const two = el("div",{class:"two-col"});
+  const c1 = el("div",{class:"card"});
+  c1.appendChild(el("h3",{},[document.createTextNode("Wedding Night Bag — Bride")]));
+  renderSimpleChecklist(c1,"nightBride",[{group:"Pack", items:NIGHT_BRIDE}]);
+  two.appendChild(c1);
+  const c2 = el("div",{class:"card"});
+  c2.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Wedding Night Bag — Groom")]));
+  renderSimpleChecklist(c2,"nightGroom",[{group:"Pack", items:NIGHT_GROOM}]);
+  two.appendChild(c2);
+  c.appendChild(two);
+};
+
+PAGE_BUILDERS.coordinator = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Wedding Day")]),
+    el("h2",{},[document.createTextNode("For Your Coordinator")]),
+    el("div",{class:"desc"},[document.createTextNode("One page that summarizes the whole binder — give this section to your month-of coordinator first.")]),
+  ]));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("Day-Of Point People")]));
+  const grid = el("div",{class:"grid"});
+  textField(grid,"Main Day-Of Contact (not the couple)",["coordinator","mainContact"],"text");
+  textField(grid,"Their Phone",["coordinator","mainContactPhone"],"tel");
+  textField(grid,"Backup Contact",["coordinator","backupContact"],"text");
+  textField(grid,"Their Phone",["coordinator","backupContactPhone"],"tel");
+  card.appendChild(grid);
+  c.appendChild(card);
+
+  const card2 = el("div",{class:"card"});
+  card2.appendChild(el("h3",{},[document.createTextNode("Vendor Arrival Times")]));
+  card2.appendChild(el("p",{class:"note"},[document.createTextNode("Full vendor contact info is on the Vendors page — this is the quick-glance arrival schedule.")]));
+  renderTable(card2,"vendorArrivals",[{label:"Vendor"},{label:"Arrival Time"},{label:"On-Site Contact / Phone"}]);
+  c.appendChild(card2);
+
+  const card3 = el("div",{class:"card"});
+  card3.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Tips & Final Payments")]));
+  textField(card3,"Who is distributing tips/final payments, envelope locations, amounts",["coordinator","tips"],"textarea",{rows:4});
+  c.appendChild(card3);
+
+  const card4 = el("div",{class:"card"});
+  card4.appendChild(el("h3",{},[document.createTextNode("Things Only We Would Know")]));
+  card4.appendChild(el("p",{class:"note"},[document.createTextNode("Anything that isn't written down elsewhere — allergies, family dynamics to manage seating around, must-do surprises, backup weather plan, who to call if something breaks.")]));
+  textField(card4,"Special Instructions",["coordinator","special"],"textarea",{rows:6});
+  c.appendChild(card4);
+
+  const card5 = el("div",{class:"card"});
+  card5.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Where Everything Else Lives")]));
+  card5.innerHTML += "<p style='font-size:13px;line-height:1.9'>"+
+    "• Full Run of Show → <b>Day-Of Run of Show</b> page<br>"+
+    "• Every vendor + contract status → <b>Vendors & Points of Contact</b> page<br>"+
+    "• Wedding Party contact info & attire → <b>Wedding Party & VIPs</b> page<br>"+
+    "• Seating chart & menu → <b>Reception Details</b> page<br>"+
+    "• Ceremony order & music → <b>Ceremony Details</b> / <b>Music & Entertainment</b> pages<br>"+
+    "• Décor placement checklists → <b>Décor Checklist</b> page<br>"+
+    "• Full guest list with meal choices → companion spreadsheet, Guest List Tracker tab</p>";
+  c.appendChild(card5);
+};
+
+PAGE_BUILDERS.afterward = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("After")]),
+    el("h2",{},[document.createTextNode("After the Wedding")]),
+  ]));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("Wrap-Up Checklist")]));
+  renderSimpleChecklist(card,"afterWedding",[{group:"To Do", items:AFTER_WEDDING}]);
+  c.appendChild(card);
+};
+
+PAGE_BUILDERS.honeymoon = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("After")]),
+    el("h2",{},[document.createTextNode("Honeymoon")]),
+  ]));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("Trip Details")]));
+  const grid = el("div",{class:"grid"});
+  textField(grid,"Destination",["honeymoon","destination"],"text");
+  textField(grid,"Travel Dates",["honeymoon","dates"],"text");
+  textField(grid,"Flight Confirmation #",["honeymoon","flight"],"text");
+  textField(grid,"Hotel / Resort Confirmation #",["honeymoon","hotel"],"text");
+  textField(grid,"Car / Transfer Confirmation #",["honeymoon","car"],"text");
+  textField(grid,"Travel Insurance Policy #",["honeymoon","insurance"],"text");
+  card.appendChild(grid);
+  textField(card,"Itinerary / Notes",["honeymoon","itinerary"],"textarea",{rows:5});
+  c.appendChild(card);
+
+  const card2 = el("div",{class:"card"});
+  card2.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Packing Checklist")]));
+  renderSimpleChecklist(card2,"honeymoonPack",[{group:"Pack", items:HONEYMOON_PACK}]);
+  c.appendChild(card2);
+};
+
+PAGE_BUILDERS.notes = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("After")]),
+    el("h2",{},[document.createTextNode("Notes")]),
+  ]));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("General Notes")]));
+  textField(card,"",["notes","general"],"textarea",{rows:8});
+  c.appendChild(card);
+  const card2 = el("div",{class:"card"});
+  card2.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Ideas & Inspiration")]));
+  textField(card2,"",["notes","ideas"],"textarea",{rows:8});
+  c.appendChild(card2);
+  const card3 = el("div",{class:"card"});
+  card3.appendChild(el("h3",{},[document.createTextNode("Questions for Vendors")]));
+  textField(card3,"",["notes","questions"],"textarea",{rows:8});
+  c.appendChild(card3);
+};
+
+/* ============================================================
+   NAV / INIT
+   ============================================================ */
+const PAGE_TITLES = {};
+function buildNav(){
+  const nav = document.getElementById("navlist");
+  SECTIONS.forEach(sec=>{
+    nav.appendChild(el("div",{class:"group-title"},[document.createTextNode(sec.group)]));
+    sec.items.forEach(item=>{
+      PAGE_TITLES[item.id] = item.label.replace(/&amp;/g,"&");
+      const btn = el("button",{class:"navbtn", id:"nav_"+item.id, html:item.label, onclick:()=>showPage(item.id)});
+      nav.appendChild(btn);
+    });
+  });
+}
+
+function showPage(id){
+  document.querySelectorAll(".navbtn").forEach(b=>b.classList.remove("active"));
+  const navBtn = document.getElementById("nav_"+id);
+  if(navBtn) navBtn.classList.add("active");
+  document.getElementById("pagetitle").textContent = PAGE_TITLES[id] || "";
+  const content = document.getElementById("content");
+  content.innerHTML = "";
+  let page = document.getElementById("page_"+id);
+  const wrap = el("div",{class:"page active", id:"page_"+id});
+  content.appendChild(wrap);
+  if(PAGE_BUILDERS[id]) PAGE_BUILDERS[id](wrap);
+  wrap.appendChild(el("footer",{class:"pagefoot"},[document.createTextNode("Nichole & Kevin — Wedding Binder")]));
+  localStorage.setItem(STORAGE_KEY+"_lastpage", id);
+  window.scrollTo(0,0);
+}
+
+function printAll(){
+  const content = document.getElementById("content");
+  const savedHTML = content.innerHTML;
+  content.innerHTML = "";
+  SECTIONS.forEach(sec=>{
+    sec.items.forEach(item=>{
+      const wrap = el("div",{class:"page active", id:"printpage_"+item.id});
+      content.appendChild(wrap);
+      if(PAGE_BUILDERS[item.id]) PAGE_BUILDERS[item.id](wrap);
+    });
+  });
+  window.print();
+  setTimeout(()=>{ content.innerHTML = savedHTML; }, 300);
+}
+
+function exportBackup(){
+  const blob = new Blob([JSON.stringify(state,null,2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "wedding-binder-backup-"+new Date().toISOString().slice(0,10)+".json";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importBackup(evt){
+  const file = evt.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ()=>{
+    try{
+      const imported = JSON.parse(reader.result);
+      state = deepMerge(DEFAULT_STATE, imported);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      alert("Backup restored! Reloading the binder now.");
+      location.reload();
+    }catch(e){
+      alert("That file couldn't be read as a binder backup.");
+    }
+  };
+  reader.readAsText(file);
+  evt.target.value = "";
+}
+
+buildNav();
+const startPage = localStorage.getItem(STORAGE_KEY+"_lastpage") || "welcome";
+showPage(PAGE_BUILDERS[startPage] ? startPage : "welcome");
+</script>
+</body>
+</html>
