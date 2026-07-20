@@ -15,6 +15,10 @@ const SHEET_NAME = "BinderData";
 const AUTH_TOKEN = "LambertLockdown"; // must match the binder's passcode
 
 function doGet(e) {
+  const token = e && e.parameter && e.parameter.token;
+  if (token !== AUTH_TOKEN) {
+    return jsonOutput_({ error: "unauthorized" });
+  }
   const sheet = getSheet();
   const json = sheet.getRange("A1").getValue() || "{}";
   return jsonOutput_(json, true);

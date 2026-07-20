@@ -619,7 +619,7 @@ const GATE_HASH = "1f4603e379f7c2";
 /* ---------- Cloud sync (Google Sheets via Apps Script Web App) ----------
    Fill in SHEETS_WEBAPP_URL after deploying the Apps Script (see README).
    Until it's set, the binder silently falls back to browser-only storage. */
-const SHEETS_WEBAPP_URL = "";
+const SHEETS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzkozdttPzMdYXibarbR4fMo0l9eYrenXO6Mckc-wSTibvVd7wagwDK0sWLwIS_wjBY/exec";
 
 function updateSyncStatus(cls, text){
   const el2 = document.getElementById("syncstatus");
@@ -633,13 +633,18 @@ function cloudLoad(){
     updateSyncStatus("off", "Cloud sync not configured yet");
     return Promise.resolve(null);
   }
+  const token = localStorage.getItem(TOKEN_KEY) || "";
   updateSyncStatus("off", "Connecting to Google Sheets…");
   const ctrl = new AbortController();
-  const timer = setTimeout(()=>ctrl.abort(), 8000);
-  return fetch(SHEETS_WEBAPP_URL, {method:"GET", signal:ctrl.signal})
+  const timer = setTimeout(()=>ctrl.abort(), 12000);
+  return fetch(SHEETS_WEBAPP_URL + "?token=" + encodeURIComponent(token), {method:"GET", signal:ctrl.signal})
     .then(r=>r.json())
     .then(data=>{
       clearTimeout(timer);
+      if(data && data.error){
+        updateSyncStatus("err", "Cloud sync rejected — check the passcode/token");
+        return null;
+      }
       if(data && typeof data === "object" && Object.keys(data).length){
         updateSyncStatus("ok", "Synced from Google Sheets");
         return data;
