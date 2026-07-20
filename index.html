@@ -837,9 +837,11 @@ function getChecklist(id){
 function el(tag, attrs, children){
   const e = document.createElement(tag);
   if(attrs) for(const k in attrs){
-    if(k==="html") e.innerHTML = attrs[k];
-    else if(k.startsWith("on")) e.addEventListener(k.slice(2), attrs[k]);
-    else e.setAttribute(k, attrs[k]);
+    const v = attrs[k];
+    if(v === null || v === undefined) continue; // e.g. readonly:null must NOT become the string "null"
+    if(k==="html") e.innerHTML = v;
+    else if(k.startsWith("on")) e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v);
   }
   (children||[]).forEach(c=>{ if(c) e.appendChild(c); });
   return e;
