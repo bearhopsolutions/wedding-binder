@@ -274,6 +274,16 @@
   table.datatable tr:hover td{background:var(--offwhite);}
   .rowdel{background:none;border:none;color:#c23;cursor:pointer;font-size:15px;padding:2px 6px;}
   .addrow-btn{margin-top:10px;}
+  .draghandle{width:44px;text-align:center;white-space:nowrap;}
+  .draghandle .grip{cursor:grab;color:var(--muted);font-size:15px;user-select:none;padding:2px 4px;}
+  .draghandle .grip:active{cursor:grabbing;}
+  .draghandle .rowmove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:11px;padding:1px 3px;line-height:1;}
+  .draghandle .rowmove:hover{color:var(--teal);}
+  table.datatable tr.dragging{opacity:.35;}
+  table.datatable tr.dragover td{box-shadow:inset 0 2px 0 var(--teal);}
+  table.datatable td.checkcell{text-align:center;width:34px;}
+  table.datatable td.checkcell input{width:auto;}
+  table.datatable tr.rowdone input:not([type="checkbox"]){text-decoration:line-through;color:var(--muted);}
 
   .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
   .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
@@ -347,7 +357,7 @@
     #content{padding:0;max-width:100%;}
     .page{display:block !important;page-break-after:always;}
     .card{break-inside:avoid;border:1px solid #ccc;}
-    .btn,.rowdel,.addrow-btn{display:none !important;}
+    .btn,.rowdel,.addrow-btn,.draghandle{display:none !important;}
   }
 </style>
 </head>
@@ -411,7 +421,6 @@ const SECTIONS = [
   ]},
   {group:"Planning", items:[
     {id:"todo", label:"Timeline &amp; To-Do Checklist"},
-    {id:"budget", label:"Budget"},
     {id:"guests", label:"Guest List &amp; RSVPs"},
   ]},
   {group:"Ceremony & Reception", items:[
@@ -727,33 +736,19 @@ const TABLE_DEFAULTS = {
     ["Officiant","","","","",""],
   ],
   vendors: [
-    ["Wedding Planner / Coordinator","","","","","Pending","No",""],
-    ["Ceremony Venue","","","","","Pending","No",""],
-    ["Reception Venue","","","","","Pending","No",""],
-    ["Officiant","","","","","Pending","No",""],
-    ["Photographer","","","","","Pending","No",""],
-    ["Videographer","","","","","Pending","No",""],
-    ["Caterer / F&B","","","","","Pending","No",""],
-    ["Bar Service","","","","","Pending","No",""],
-    ["Florist","","","","","Pending","No",""],
-    ["Baker / Cake","","","","","Pending","No",""],
-    ["Band / DJ","","","","","Pending","No",""],
-    ["Hair Stylist","","","","","Pending","No",""],
-    ["Makeup Artist","","","","","Pending","No",""],
-    ["Rentals (linens/furniture)","","","","","Pending","No",""],
-    ["Transportation","","","","","Pending","No",""],
-    ["Lodging / Hotel Block","","","","","Pending","No",""],
-    ["Stationery","","","","","Pending","No",""],
-    ["Lighting / Decor","","","","","Pending","No",""],
+    ["The Gardenia - Venue","","817-623-5300","hunter@thegardeniavenue.com","","","10am-11pm"],
+    ["Shakers - Bar","Cylie Bowery","817-873-2880","cylie@shakerbarandbev.com","","",""],
+    ["Farah - Catering","Stephanie Ozcan","","hi@ferahcatering.com","","",""],
+    ["ShootemupSam Photography","Samuel McClary","214-477-3999","samtheman1968@hotmail.com","","","Services for four (4) hours VW photo bus plus gas pump photo booth; 4:30-5:30. Plan for 1.5–2 hours beforehand to ensure everything is ready as your preferred start time arrives."],
+    ["Eli Lyon Film Co. Photos","Eli","972-804-3665","","","",""],
+    ["Kiss and Makeup DFW","Channing Donahue","817-507-5955","info@kissandmakeupdfw.com","","",""],
+    ["Chuck Vending","","972-214-9473","","","","Start: 10/23/2027 4:00pm — End: 10/23/2027 10:00pm"],
+    ["Braden Daniels - Magician","Braden Daniels","","braden@bradendaniels.com","","",""],
+    ["Wedding Coordinator","Maddie","","","","",""],
+    ["DJ Connection","","972-408-6580","","","",""],
   ],
-  budgetByEvent: [
-    ["General/Planning","",""],["Rehearsal Dinner","",""],["Welcome Party","",""],
-    ["Ceremony","",""],["Cocktail Hour","",""],["Reception","",""],
-    ["After Party","",""],["Farewell Brunch","",""],
-  ],
-  whosPaying: [
-    ["Partner 1","","",""],["Partner 2","","",""],["Parents / Family 1","","",""],
-    ["Parents / Family 2","","",""],["Other","","",""],
+  masterTodo: [
+    [false,""],[false,""],[false,""],[false,""],[false,""],
   ],
   vipGuests: [["","","",""]],
   mealCounts: [["Chicken",""],["Beef",""],["Vegetarian",""],["Kids Meal",""]],
@@ -951,15 +946,51 @@ function renderTable(container, tableId, columns, opts){
   const table = el("table",{class:"datatable"});
   const thead = el("thead");
   const trh = el("tr");
+  if(!opts.noReorder) trh.appendChild(el("th",{class:"draghandle"},[]));
   columns.forEach(c=> trh.appendChild(el("th",{},[document.createTextNode(c.label)])) );
   if(!opts.noDelete) trh.appendChild(el("th",{},[]));
   thead.appendChild(trh); table.appendChild(thead);
   const tbody = el("tbody");
 
+  let dragFrom = null;
+
+  function moveRow(from, to){
+    if(to<0 || to>=rows.length || from===to) return;
+    const [moved] = rows.splice(from,1);
+    rows.splice(to,0,moved);
+    persist();
+    renderRows();
+  }
+
   function renderRows(){
     tbody.innerHTML = "";
     rows.forEach((rowArr, ri)=>{
       const tr = el("tr");
+      if(opts.strikeCol!==undefined && rowArr[opts.strikeCol]) tr.classList.add("rowdone");
+
+      if(!opts.noReorder){
+        const handleTd = el("td",{class:"draghandle"});
+        handleTd.appendChild(el("span",{class:"grip", title:"Drag to reorder"},[document.createTextNode("⠿")]));
+        handleTd.appendChild(el("button",{class:"rowmove", title:"Move up", onclick:()=>moveRow(ri,ri-1)},[document.createTextNode("▲")]));
+        handleTd.appendChild(el("button",{class:"rowmove", title:"Move down", onclick:()=>moveRow(ri,ri+1)},[document.createTextNode("▼")]));
+        tr.draggable = true;
+        tr.addEventListener("dragstart", (e)=>{
+          dragFrom = ri;
+          tr.classList.add("dragging");
+          if(e.dataTransfer){ e.dataTransfer.effectAllowed = "move"; e.dataTransfer.setData("text/plain", String(ri)); }
+        });
+        tr.addEventListener("dragend", ()=>{ tr.classList.remove("dragging"); dragFrom=null; });
+        tr.addEventListener("dragover", (e)=>{ e.preventDefault(); if(e.dataTransfer) e.dataTransfer.dropEffect="move"; tr.classList.add("dragover"); });
+        tr.addEventListener("dragleave", ()=> tr.classList.remove("dragover"));
+        tr.addEventListener("drop", (e)=>{
+          e.preventDefault();
+          tr.classList.remove("dragover");
+          if(dragFrom===null || dragFrom===ri) return;
+          moveRow(dragFrom, ri);
+        });
+        tr.appendChild(handleTd);
+      }
+
       columns.forEach((c, ci)=>{
         const td = el("td");
         let field;
@@ -970,12 +1001,23 @@ function renderTable(container, tableId, columns, opts){
             if(rowArr[ci]===optVal) o.selected=true;
             field.appendChild(o);
           });
+          field.addEventListener("input", ()=>{ rowArr[ci]=field.value; persist(); });
+          field.addEventListener("change", ()=>{ rowArr[ci]=field.value; persist(); });
+        } else if(c.type==="checkbox"){
+          field = el("input",{type:"checkbox"});
+          field.checked = !!rowArr[ci];
+          field.addEventListener("change", ()=>{
+            rowArr[ci]=field.checked;
+            if(opts.strikeCol===ci) tr.classList.toggle("rowdone", field.checked);
+            persist();
+          });
+          td.classList.add("checkcell");
         } else {
           field = el("input",{type:c.type||"text", readonly: c.readonly?"readonly":null});
           field.value = rowArr[ci] ?? "";
+          field.addEventListener("input", ()=>{ rowArr[ci]=field.value; persist(); });
+          field.addEventListener("change", ()=>{ rowArr[ci]=field.value; persist(); });
         }
-        field.addEventListener("input", ()=>{ rowArr[ci]=field.value; persist(); });
-        field.addEventListener("change", ()=>{ rowArr[ci]=field.value; persist(); });
         td.appendChild(field);
         tr.appendChild(td);
       });
@@ -997,7 +1039,7 @@ function renderTable(container, tableId, columns, opts){
 
   if(!opts.noAdd){
     const addBtn = el("button",{class:"btn addrow-btn", onclick:()=>{
-      rows.push(columns.map(()=>""));
+      rows.push(columns.map(c=> c.type==="checkbox" ? false : ""));
       persist();
       renderRows();
     }},[document.createTextNode("+ Add Row")]);
@@ -1071,6 +1113,20 @@ PAGE_BUILDERS.snapshot = (c)=>{
   textField(grid,"Wedding Hashtag",["snapshot","hashtag"],"text");
   card.appendChild(grid);
   c.appendChild(card);
+
+  const todoCard = el("div",{class:"card"});
+  todoCard.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Master To-Do")]));
+  todoCard.appendChild(el("p",{class:"note"},[document.createTextNode("A quick catch-all list for anything that doesn't fit the full timeline checklist. Drag to reorder, check off as you go.")]));
+  renderTable(todoCard,"masterTodo",[
+    {label:"", type:"checkbox"},{label:"Task"},
+  ],{strikeCol:0});
+  c.appendChild(todoCard);
+
+  const notesCard = el("div",{class:"card"});
+  notesCard.appendChild(el("h3",{},[document.createTextNode("Random Notes")]));
+  notesCard.appendChild(el("p",{class:"note"},[document.createTextNode("A scratchpad for anything else — ideas, reminders, questions to ask.")]));
+  textField(notesCard,"Notes",["notes","snapshotRandom"],"textarea",{rows:6});
+  c.appendChild(notesCard);
 
   refreshSnapshotStats();
 };
@@ -1152,7 +1208,7 @@ PAGE_BUILDERS.party = (c)=>{
   c.appendChild(el("div",{class:"page-head"},[
     el("span",{class:"kicker"},[document.createTextNode("People")]),
     el("h2",{},[document.createTextNode("Wedding Party & VIPs")]),
-    el("div",{class:"desc"},[document.createTextNode("Bridesmaids, groomsmen, and key family — contact info in one place for both of you and your coordinator.")]),
+    el("div",{class:"desc"},[document.createTextNode("Bridesmaids, groomsmen, and key family — contact info in one place for both of you and your coordinator. Drag the ⠿ handle (or use the ▲▼ buttons) to reorder rows.")]),
   ]));
   const card = el("div",{class:"card"});
   card.appendChild(el("h3",{},[document.createTextNode("Wedding Party & Family Roster")]));
@@ -1166,14 +1222,13 @@ PAGE_BUILDERS.vendors = (c)=>{
   c.appendChild(el("div",{class:"page-head"},[
     el("span",{class:"kicker"},[document.createTextNode("People")]),
     el("h2",{},[document.createTextNode("Vendors & Points of Contact")]),
-    el("div",{class:"desc"},[document.createTextNode("Every vendor, contract, and payment status at a glance.")]),
+    el("div",{class:"desc"},[document.createTextNode("Every vendor and point of contact at a glance — drag the ⠿ handle (or use the ▲▼ buttons) to reorder rows.")]),
   ]));
   const card = el("div",{class:"card"});
   card.appendChild(el("h3",{},[document.createTextNode("Vendor Master List")]));
   renderTable(card,"vendors",[
-    {label:"Category"},{label:"Vendor / Business"},{label:"Contact Person"},{label:"Phone"},{label:"Email"},
-    {label:"Contract", type:"select", options:["Pending","Signed","N/A"]},
-    {label:"Deposit Paid", type:"select", options:["No","Yes","N/A"]},
+    {label:"Vendor / Business"},{label:"Contact Person"},{label:"Phone"},{label:"Email"},
+    {label:"Arrival / Set-Up Time"},{label:"Departure / Breakdown Time"},
     {label:"Notes"},
   ]);
   c.appendChild(card);
@@ -1191,24 +1246,6 @@ PAGE_BUILDERS.todo = (c)=>{
   renderTodoList(card);
   c.appendChild(card);
   updateTodoProgress();
-};
-
-PAGE_BUILDERS.budget = (c)=>{
-  c.appendChild(el("div",{class:"page-head"},[
-    el("span",{class:"kicker"},[document.createTextNode("Planning")]),
-    el("h2",{},[document.createTextNode("Budget")]),
-    el("div",{class:"desc"},[document.createTextNode("Big-picture totals by event. For the full line-item budget (every vendor, every cost), use the Budget Tracker tab in the companion spreadsheet.")]),
-  ]));
-  const card1 = el("div",{class:"card"});
-  card1.appendChild(el("h3",{},[document.createTextNode("Budget by Event")]));
-  card1.appendChild(el("p",{class:"note"},[document.createTextNode("Rough estimated vs. actual cost per event — pulls from the same categories as the spreadsheet's budget tracker.")]));
-  renderTable(card1,"budgetByEvent",[{label:"Event"},{label:"Estimated ($)",type:"number"},{label:"Actual ($)",type:"number"}]);
-  c.appendChild(card1);
-
-  const card2 = el("div",{class:"card"});
-  card2.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Who's Paying for What")]));
-  renderTable(card2,"whosPaying",[{label:"Contributor"},{label:"Amount Pledged ($)",type:"number"},{label:"Amount Received ($)",type:"number"},{label:"Notes"}]);
-  c.appendChild(card2);
 };
 
 PAGE_BUILDERS.guests = (c)=>{
