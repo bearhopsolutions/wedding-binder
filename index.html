@@ -418,10 +418,12 @@ const SECTIONS = [
   {group:"People", items:[
     {id:"party", label:"Wedding Party &amp; VIPs"},
     {id:"vendors", label:"Vendors &amp; Points of Contact"},
+    {id:"contracts", label:"Contracts &amp; Important Info"},
   ]},
   {group:"Planning", items:[
     {id:"todo", label:"Timeline &amp; To-Do Checklist"},
     {id:"guests", label:"Guest List &amp; RSVPs"},
+    {id:"registry", label:"Gift Registry"},
   ]},
   {group:"Ceremony & Reception", items:[
     {id:"ceremony", label:"Ceremony Details"},
@@ -439,6 +441,7 @@ const SECTIONS = [
   {group:"Wedding Day", items:[
     {id:"runofshow", label:"Day-Of Run of Show"},
     {id:"emergency", label:"Emergency Kit &amp; Night Bags"},
+    {id:"accessibility", label:"Accessibility Notes"},
     {id:"coordinator", label:"For Your Coordinator"},
   ]},
   {group:"After", items:[
@@ -494,12 +497,12 @@ const TODO_RAW = [
 ["4-6 Months Before","General/Planning","Misc","Buy wedding bands/rings","High","Both",""],
 ["4-6 Months Before","General/Planning","Vendors","Create photography mood board / shot list","Low","Bride",""],
 ["4-6 Months Before","General/Planning","Vendors","Provide band/DJ with must-play & do-not-play songs","Medium","Bride",""],
-["4-6 Months Before","Reception","Flowers","Decide on floral arrangements & archway design","Medium","Bride",""],
+["4-6 Months Before","Reception","Flowers","Decide on floral arrangements & archway design","Medium","Bride","Venue offers a choice of 4 arches + a wooden cross (copper arch max 10 lbs)"],
 ["4-6 Months Before","General/Planning","Color Scheme","Coordinate attire accents (tablescapes, ties, pocket squares, accessories)","Low","Both",""],
 ["4-6 Months Before","General/Planning","Wedding Party","Send housing info to wedding party","Medium","Both",""],
-["4-6 Months Before","General/Planning","Wedding Party","Order wedding party gifts","Low","Both",""],
+["4-6 Months Before","General/Planning","Wedding Party","Order wedding party gifts","Low","Both","Ideas: custom jerseys for the bridal party; custom jerseys + whisky for the groomsmen"],
 ["4-6 Months Before","General/Planning","Bridal","First wedding dress fitting","Medium","Bride",""],
-["4-6 Months Before","General/Planning","Admin","Apply for marriage license (check state timing)","High","Both",""],
+["4-6 Months Before","General/Planning","Admin","Apply for marriage license (check state timing)","High","Both","TX license is valid 90 days — time this ~6 weeks before the wedding to stay inside the window"],
 ["4-6 Months Before","General/Planning","Admin","Create wedding day emergency kit list","Low","Bride","Meds, pins, scissors, tape, hair wax, veil weights"],
 ["4-6 Months Before","Farewell Brunch","Venue","Plan farewell brunch (venue, food, headcount)","Low","Both",""],
 ["2-4 Months Before","General/Planning","Admin","Send wedding invitations","High","Bride",""],
@@ -510,14 +513,14 @@ const TODO_RAW = [
 ["2-4 Months Before","Rehearsal Dinner","F&B","Finalize rehearsal dinner menu & drinks","Medium","Groom",""],
 ["2-4 Months Before","Welcome Party","F&B","Finalize welcome party drinks","Low","Groom",""],
 ["2-4 Months Before","After Party","F&B","Finalize after party food","Low","Groom",""],
-["2-4 Months Before","General/Planning","F&B","Finalize desserts (cake, s'mores bar, etc.)","Medium","Groom",""],
+["2-4 Months Before","General/Planning","F&B","Finalize desserts (cake, s'mores bar, etc.)","Medium","Groom","Ferah Catering cuts/serves for free if you provide the cake — confirm real vs. display cake, and whether to save the top tier"],
 ["2-4 Months Before","General/Planning","Bridal","Buy rehearsal dinner look","Low","Bride",""],
 ["2-4 Months Before","General/Planning","Bridal","Buy after party look","Low","Bride",""],
 ["2-4 Months Before","General/Planning","Bridal","Buy farewell brunch look","Low","Bride",""],
 ["2-4 Months Before","General/Planning","Vendors","Schedule floral delivery time","Low","Bride",""],
 ["2-4 Months Before","Ceremony","Venue","Add ceremony decor (aisle accents)","Low","Bride",""],
 ["2-4 Months Before","Ceremony","Venue","Write ceremony program","Low","Bride",""],
-["2-4 Months Before","General/Planning","Guest Experience","Plan welcome gifts / OOT bags","Low","Bride",""],
+["2-4 Months Before","General/Planning","Guest Experience","Plan welcome gifts / OOT bags","Low","Bride","Ideas: drinks, his & her snacks, toiletries"],
 ["2-4 Months Before","General/Planning","Guest Experience","Plan bathroom goodie baskets","Low","Bride",""],
 ["2-4 Months Before","General/Planning","Misc","Start dance lessons (first dance)","Low","Both",""],
 ["2-4 Months Before","General/Planning","Admin","Confirm housing/hotel block","Medium","Bride",""],
@@ -570,14 +573,53 @@ const TODO_RAW = [
 ["After the Wedding","General/Planning","Admin","Return/sell rentals (dress, suit, decor)","Low","Both",""],
 ["After the Wedding","General/Planning","Vendors","Leave vendor reviews","Low","Both",""],
 ["After the Wedding","General/Planning","Admin","Order/frame favorite wedding photos","Low","Both",""],
+
+["Open Items — Confirm & Book","General/Planning","Vendors","Book / confirm a florist","High","Bride","No signed contract on file yet — only the venue's floral guideline sheet"],
+["Open Items — Confirm & Book","General/Planning","Admin","Book required security guard / off-duty officer","High","Both","Must be booked 30+ days before the event; send proof of booking to the venue"],
+["Open Items — Confirm & Book","General/Planning","Vendors","Get a signed contract from the magician (Braden Daniels)","Medium","Both","No contract currently on file — confirm booking, timing, and cost"],
+["Open Items — Confirm & Book","General/Planning","Admin","Purchase required insurance","High","Both","Event cancellation insurance, $1M host general liability, and $1M alcohol liability — all required by the venue"],
+["Open Items — Confirm & Book","General/Planning","Admin","Collect a $1M general liability certificate from every vendor","High","Both","For the venue's file"],
+["Open Items — Confirm & Book","General/Planning","Admin","Choose an officiant","High","Both","Confirm they're licensed to officiate a marriage in Texas"],
+["Open Items — Confirm & Book","General/Planning","Admin","Plan guest transportation / shuttle, if needed","Low","Both",""],
+["Open Items — Confirm & Book","General/Planning","Admin","Register for gifts","Medium","Bride","See the Gift Registry page for the wish list"],
+["Open Items — Confirm & Book","Ceremony","Admin","Finalize ceremony structure with the officiant","Medium","Both","Readings, vow format, unity ritual (if any)"],
+["Open Items — Confirm & Book","General/Planning","Admin","Confirm accessible transportation for the wedding day","High","Both","See Accessibility Notes page"],
+["Open Items — Confirm & Book","General/Planning","Admin","Start the final floor plan with the venue","Medium","Both","Due 15 days before the event — begin drafting now"],
+["Open Items — Confirm & Book","General/Planning","Vendors","Confirm ShootemUpSam Photo Bus set-up/start/end times","Medium","Both","Currently blank on the signed contract"],
+
+["Wedding Wednesday Follow-Ups","General/Planning","Bridal","Wait for / pick up dress toile","Medium","Bride","ETA June. $130 deposit, ~$600 total"],
+["Wedding Wednesday Follow-Ups","General/Planning","Misc","Plan bachelorette party","Medium","Bride",""],
+["Wedding Wednesday Follow-Ups","General/Planning","Misc","Plan bachelor party","Medium","Groom",""],
+["Wedding Wednesday Follow-Ups","General/Planning","Bridal","Buy wedding-day \"wedding converse\" (comfort shoes for dancing)","Low","Bride",""],
+["Wedding Wednesday Follow-Ups","General/Planning","Admin","Buy groom's tux/suit and tie","Medium","Groom",""],
+["Wedding Wednesday Follow-Ups","General/Planning","Admin","Finalize wedding favors","Low","Bride","Rubber ducks, custom card deck, pens"],
+["Wedding Wednesday Follow-Ups","General/Planning","Admin","Order return address stamps","Low","Bride",""],
+["Wedding Wednesday Follow-Ups","General/Planning","Admin","Set up a video-call guest book for the reception","Low","Bride",""],
+["Wedding Wednesday Follow-Ups","General/Planning","Admin","Buy or rent plates, silverware & napkins for the reception","High","Both","Not included by the caterer — you provide your own disposables"],
+["Wedding Wednesday Follow-Ups","General/Planning","Admin","Contact Valley View Police Dept re: wedding day","Medium","Both","Planned for January 2027"],
+["Wedding Wednesday Follow-Ups","General/Planning","Admin","Arrange a dog attendant for the wedding day, if bringing a pet","Low","Both","Venue may allow an approved pet with a dedicated attendant"],
+
+["Final Week & Day-Before","General/Planning","Bridal","Break in wedding shoes","Low","Bride",""],
+["Final Week & Day-Before","General/Planning","Admin","Pack a \"detail shot\" box for the photographer","Medium","Bride","Invitations, ring box, both vows, perfume, jewelry"],
+["Final Week & Day-Before","General/Planning","Admin","Final walkthrough with venue and coordinator","Medium","Both","The Monday before the wedding"],
+["Final Week & Day-Before","General/Planning","Admin","Deliver personal décor/signage to the venue","Medium","Both","Within their setup window, the day before"],
+
+["Honeymoon Prep","General/Planning","Misc","Book honeymoon travel","High","Both","Confirm passport validity is 6+ months past the return date for international travel"],
+["Honeymoon Prep","General/Planning","Misc","Confirm accessibility accommodations for the honeymoon","High","Both","Seating, room accessibility, transfers — with hotel/airline in advance"],
+["Honeymoon Prep","General/Planning","Misc","Arrange pet / house-sitting / mail care while away","Medium","Both",""],
 ];
 
 const PHOTO_SHOTS = [
-{group:"Getting Ready", items:["Bridal party hair and makeup","Dress hanging","Bouquets","Shoes","The rings","Invitations","Groomsmen getting ready"]},
-{group:"Ceremony", items:["Location shots before guests arrive (aisle, programs, flowers, etc.)","Groom walking down aisle","Groom standing with groomsmen","Ring bearer and flower girl walking up aisle","Bridal party walking up aisle","Bride walking up aisle with escort(s)","Bride and groom at the altar","Bride and groom vows","Exchanging of the rings","Guests watching","The first kiss","Couple walking down the aisle","Receiving line"]},
-{group:"Group Shots", items:["Bride and groom","Bride with parents","Groom with parents","Bride and groom with parents","Bride and groom with parents and siblings","Bride with bridal party","Groom with groomsmen","Full wedding party","Bride with groomsmen","Groom with bridal party","Bride and groom with flower girl and ring bearer"]},
-{group:"Reception", items:["Details before guests arrive (place settings, centerpieces, favors, etc.)","Full tablescapes","Bride and groom chairs","Cake","Guestbook table"]},
-{group:"Other Key Moments", items:["Speeches","Couple reacting to speeches","Cake cutting","First dance","Father-daughter dance","Groom and mother dance","Wedding party dance","Candid shots throughout the party"]},
+{group:"Getting Ready — Bride", items:["Wedding dress hanging, backlit near a window","Bride putting on shoes, jewelry, and veil","MOH or mom zipping/buttoning the dress","Bride looking in the mirror, full length","Bride + bridesmaids toasting (coffee, mimosas, etc.)","Bride reading a card/letter from the groom","Candid laughter and nervous-excitement moments getting ready","Bride hugging her dad or another key person before heading out","Bouquet, close up","Rings, close up","Invitation suite flat lay","Shoes and jewelry flat lay","Perfume bottle","\"Something old, new, borrowed, blue\" items, if applicable"]},
+{group:"Getting Ready — Groom", items:["Suit/tux hanging","Cufflinks, watch, shoes, boutonnière flat lay","Boutonnière being pinned on","Groom looking in the mirror","Groom + groomsmen toasting","Groom reading a card/letter from the bride","Tie or bow-tie adjustment, candid","Groomsmen laughing/joking together, candid","Cologne bottle","Handwritten vows/notes, if applicable"]},
+{group:"Bridal Party & Groomsmen", items:["Bride + all bridesmaids, formal group shot","Bride + Maid of Honor, solo","Fun/candid bridesmaids group pose","Walking shot, bride + bridesmaids","Groom + all groomsmen, formal group shot","Groom + Best Man, solo","Fun/candid groomsmen group pose","Walking shot, groom + groomsmen","Bride + full wedding party, formal group shot (no groom, since no first look)","Fun/candid full wedding party shot","Portraits at Gardenia location spots (see pic inspiration folder)"]},
+{group:"Family Portraits", items:["Bride + Dad","Bride + Mom","Bride + Dad + Mom","Bride + siblings","Bride + grandparents","Groom + Dad","Groom + Mom","Groom + Dad + Mom","Groom + siblings","Groom + grandparents","Extended family groupings, as needed — confirm a flat, wheelchair-accessible spot","Bride + Groom + both sets of parents","Bride + Groom + both parents + all siblings","Bride + Groom + entire immediate family","Bride + Groom + full wedding party","Grandparents with the couple"]},
+{group:"Ceremony", items:["Location shots before guests arrive (aisle, programs, flowers, etc.)","Groom + parents walking in, if applicable","Groom waiting at the altar","Bride + escort walking down the aisle","Groom's reaction seeing the bride walk down the aisle — a key emotional shot","Ring exchange close-up","First kiss","Recessional — joy shot walking back up the aisle"]},
+{group:"Bride & Groom Portraits (post-ceremony — no first look)", items:["First reaction / first look at each other during cocktail hour","Romantic portraits at Gardenia location spots (see pic inspiration folder)","Close-up portrait","Forehead kiss","Walking away, hand in hand","Golden hour couple portrait","Candid laughing moment","A couple portrait that naturally incorporates the wheelchair rather than hiding it"]},
+{group:"Venue & Décor Details", items:["Exterior of The Gardenia, and the venue sign","Ceremony site before guests arrive — arch, aisle, string lights","Reception barn fully set for dinner, wide shot","Table settings and centerpieces","Seating chart / escort display","Bar menu sign","Guest book","Favors table","Cake and dessert table"]},
+{group:"Reception", items:["Details before guests arrive (place settings, centerpieces, favors, etc.)","Bride's grand entrance","Groom's grand entrance","First dance","Father-daughter dance","Mother-son dance","Toast/speech reactions","Cake cutting","Candid dancing shot"]},
+{group:"Candid & Guest Moments", items:["Guest reactions during the ceremony and speeches","Kids at the wedding, candid","Wide shot of the full guest group","Dance floor, wide shot","DJ booth","Photo booth strip / photo bus candids"]},
+{group:"End of Night", items:["Planned sparkler send-off","\"Just Married\" / getaway shot","Last dance"]},
 ];
 
 const DECOR_CEREMONY = ["Ceremony arch / altar structure","Fabric draping / chiffon / tulle","Aisle runner (fabric, floral, petals, rug)","Aisle markers / chair florals","Pew bows / chair ties","Ground florals at altar","Lanterns lining aisle","Candles (pillar, hurricane, LED if required)","Reserved seating signs","Bride's side / groom's side signage","Welcome sign","Ceremony program sign","Order of ceremony sign","Directional signs","Vows book / vow cards","Ring box / holder","Marriage license","Guest book table","Guest book","Pens / markers","Card mail box"];
@@ -597,11 +639,37 @@ const STATIONERY = [
 const NIGHT_BRIDE = ["Phone charger","Makeup remover","Brush / comb","Shampoo / conditioner","Deodorant","Lotion","Pajamas","Lingerie","Clothes for the next day","Medications","Water bottle","Toothbrush / toothpaste"];
 const NIGHT_GROOM = ["Phone charger","Toothbrush / toothpaste","Brush / comb","Shampoo / conditioner","Deodorant","Pajamas","Clothes for the next day","Water bottle","Medications"];
 
-const EMERGENCY_KIT = ["Marriage license / certificate","Rings (backup check)","Guest book & pens","Tradition items (unity candle, something borrowed, etc.)","Printed vows","Safety pins","Mini sewing kit","Scissors","Fashion / double-sided tape","Stain remover pen","Hairspray & bobby pins","Pain relievers / personal meds","Band-aids","Deodorant","Mints / gum","Tissues","Snacks & water","Phone charger / battery pack","Extra earring backs","Clear nail polish (for runs)","Static guard","Sunscreen (outdoor weddings)"];
+const EMERGENCY_KIT = ["Marriage license / certificate","Rings (backup check)","Guest book & pens","Tradition items (unity candle, something borrowed, etc.)","Printed vows","Safety pins","Mini sewing kit","Scissors","Fashion / double-sided tape","Stain remover pen","Hairspray & bobby pins","Pain relievers / personal meds","Band-aids","Deodorant","Mints / gum","Tissues","Snacks & water","Phone charger / battery pack","Extra earring backs","Clear nail polish (for runs)","Static guard","Sunscreen (outdoor weddings)","Wheelchair cushion (spare/backup)","Wheelchair repair / spare-parts tool kit"];
 
-const AFTER_WEDDING = ["Write & send thank-you cards","Change name on legal documents (if applicable)","Return / sell rentals (dress, suit, decor)","Leave vendor reviews","Order / frame favorite wedding photos","Preserve bouquet & clean/preserve dress","Cancel or transfer wedding insurance","Confirm all final vendor payments cleared","Share photo gallery link with family & guests","Update accounts, IDs & passport if name changed","Send albums/prints to parents"];
+const AFTER_WEDDING = ["Write & send thank-you cards","Change name on legal documents (if applicable)","Return / sell rentals (dress, suit, decor)","Leave vendor reviews","Order / frame favorite wedding photos","Preserve bouquet & clean/preserve dress","Cancel or transfer wedding insurance","Confirm all final vendor payments cleared","Share photo gallery link with family & guests","Update accounts, IDs & passport if name changed","Send albums/prints to parents","Download & back up all wedding photos/videos before the photographer's 365-day archive window closes (~October 2028)","File this binder and all vendor contracts somewhere safe for records"];
 
-const HONEYMOON_PACK = ["Passports / IDs","Travel documents & boarding passes","Currency / travel card","Chargers & adapters","Medications","Sunscreen & bug spray","Weather-appropriate clothing","Swimwear","Camera","Comfortable shoes","Copies of important documents","Travel insurance info","Confirmation numbers (flights, hotel, car)"];
+const HONEYMOON_PACK = ["Passports / IDs","Travel documents & boarding passes","Currency / travel card","Chargers & adapters","Medications","Sunscreen & bug spray","Weather-appropriate clothing","Swimwear","Camera","Comfortable shoes","Copies of important documents","Travel insurance info","Confirmation numbers (flights, hotel, car)","Set out-of-office email auto-replies","Copy of marriage certificate (if changing name on travel documents)"];
+
+const REGISTRY_ITEMS = [
+{group:"Kitchen & Dining", items:["Cutco steak knives (confirm count)","Silverware","Wine glasses","Beth Dutton dishware (confirm count)","Black and white checkered dishware (confirm count)","Air fryer","Espresso machine","Whiskey stuff","Mortar & pestle","The Bartesian cocktail maker","24-gallon automatic trash can","Dehydrator","Vacuum sealer","Mixer","Toaster oven","Tortilla warmer","Cookie sheets"]},
+{group:"Bedroom", items:["California king comforter"]},
+{group:"In General", items:["Projector","Back doors"]},
+];
+
+const CONTRACT_FLAGS = [
+"Guest count mismatch: Ferah Catering is contracted for 120 guests, Shaker Bar & Bev for 150 — confirm the real headcount with both.",
+"Cocktail hour bar gap: Shaker Bar & Bev is contracted to start at 6:00 PM, but cocktail hour begins around 5:00–5:15 PM — request an earlier bar start.",
+"The requested 11:30 PM final exit is 30 minutes past The Gardenia's contracted 11:00 PM close — confirm a paid extension or compress the program to close by 10:00 PM.",
+"ShootemUpSam Photo Bus set-up/start/end times were never filled in on the contract, and the signature/date fields look blank on the saved copy — confirm both directly with the vendor.",
+"Kiss and Makeup retainer is listed two ways ($174.10 vs. 25% / $435.25) — get clarity from Channing Donahue, plus the real payment schedule and day-of arrival time.",
+"Ferah Catering's \"Second Payment\" is dated 4/22/2026, before the contract's own 4/30/2026 signature date — confirm the real due date.",
+"Chuck Vending's $333 balance has no printed due date — confirm with the vendor directly.",
+"Collect a $1M general liability certificate from every vendor, plus event cancellation insurance and $1M alcohol liability insurance for the host — all required by the venue.",
+"Book the required security guard 30+ days before the event and send proof of booking to the venue.",
+"DJ Connection needs 2 grounded outlets within 25 ft (or a client-supplied generator); Chuck Vending needs outlets within 50–100 ft — coordinate the power plan with the venue for both.",
+"DJ Connection's signature page looks blank on the saved contract copy — confirm an executed version exists. DJ Connection is governed by Oklahoma law, unlike every other Texas-based vendor — tell them T&M Events has day-of change authority.",
+"No florist contract is on file — only the venue's floral guideline sheet. Confirm the booking and add the signed contract to this binder.",
+"Photographer coverage ends at 9:00 PM, two hours before the DJ's 11:00 PM end — keep cake cutting and other key highlights before 9:00 PM, or budget for extra photography hours.",
+"The magician (Braden Daniels) has no contract on file — confirm booking, timing, and cost.",
+"The getting-ready location isn't documented anywhere in the vendor contracts — confirm the exact address with the coordinator so hair/makeup, photography, and transport can plan around it.",
+"The officiant isn't documented in the vendor contracts — confirm name, contact info, and Texas marriage-officiant licensing.",
+"Confirm accessible restroom locations and aisle/dance-floor surfaces with the venue in writing, ahead of the day.",
+];
 
 /* ============================================================
    STATE
@@ -694,16 +762,16 @@ const DEFAULT_STATE = {
     weddingDateISO:"2027-10-23",
     brideName:"Nichole",
     groomName:"Kevin",
-    ceremonyVenue:"",
-    receptionVenue:"",
-    ceremonyTime:"",
-    receptionTime:"",
+    ceremonyVenue:"The Gardenia Venue",
+    receptionVenue:"The Gardenia Venue",
+    ceremonyTime:"4:30 PM",
+    receptionTime:"6:00 PM",
     guestCount:"",
     totalBudget:"",
-    dressCode:"",
-    theme:"",
+    dressCode:"Formal",
+    theme:"Teal & Purple",
     officiant:"",
-    website:"",
+    website:"https://nkwedding.party/",
     hashtag:"",
   },
   couple:{
@@ -715,49 +783,165 @@ const DEFAULT_STATE = {
   },
   tables:{},
   checklists:{},
-  notes:{},
-  ceremony:{},
-  reception:{},
+  notes:{
+    photoNotes:"No first look — family and wedding party photos happen before the ceremony; the couple's own portraits happen together for the first time during cocktail hour. Photographer coverage runs 1:00–9:00 PM only, so keep cake cutting and other key highlights before 9:00 PM. Ask the photographer for low-angle/eye-level shots that don't require repeated repositioning, and to keep the aisle photo lane clear and flat for the wheelchair — see the Accessibility Notes page. Two reference folders are saved for the photographer and coordinator: Engagement (poses/styling already liked) and Gardenia Spots (photo-worthy locations scouted at the venue). Folder location: Desktop > claude wedding > pic inspiration.",
+  },
+  ceremony:{
+    venueContactName:"Hunter Scheffler",
+    venueContactPhone:"817-247-0174",
+    officiantPhone:"",
+    startEnd:"4:30 – 5:00 PM",
+    musicArrival:"",
+    musicEntrance:"",
+    musicAisle:"",
+    musicExit:"",
+  },
+  reception:{
+    cocktailMenu:"Passed apps (5:00/5:15–6:00 PM): mac & cheese bites with bacon, maple pecan chicken skewers with honey dijon (contains nuts — flag for allergy signage), bruschetta (vegetarian). Guest entertainment: claw machine & sticker bar (Chuck Vending), strolling magician if confirmed. Cocktail area: string-light courtyard / cocktail porch.",
+    dinnerMenu:"Elevate Buffet ($45/guest base) from Ferah Catering & Events: Greek salad; chicken breast with basil chardonnay cream (GF-friendly); beef shish kebab with tzatziki (GF, medium); penne alfredo (vegetarian); grilled veggies (GF/vegetarian); plus a free gift of yeast rolls. Kids 12 and under are half price.",
+    dessert:"Cake cutting is a free gift from Ferah — you provide the cake, they cut and serve it on disposable plates. Decide: real cake or display cake, and whether to save the top tier.",
+    bar:"Shaker Bar & Bev Co — Premium Call Bar. Includes Tito's Vodka, Jack Daniels + Jameson, Bacardi Silver + Malibu, Tanqueray Gin, Espolon Silver + 1800 Reposado tequila; 1 premium + 2 domestic beers; house red/white wine; full mixer package. Contracted 6:00–10:00 PM — request a 5:00 PM start so drinks are available for the full cocktail hour (see Contracts page flag).",
+    seating:"",
+  },
   music:{},
   welcomeparty:{},
   rehearsal:{},
   brunch:{},
-  coordinator:{},
+  coordinator:{
+    mainContact:"Madelysse Dam (T&M Events)",
+    mainContactPhone:"817-308-8681",
+    backupContact:"",
+    backupContactPhone:"",
+    tips:"T&M Events coordinator balance ($700) due the Monday before — 10/18/2027. See the Contracts & Important Info page for every vendor's final balance and due date, plus who has been paid already.",
+    special:"Nichole is a wheelchair user — see the Accessibility Notes page before the day. All Master Timeline buffers marked [ACCESS BUFFER] are intentional; please protect them rather than filling them with \"one more thing.\"",
+  },
   honeymoon:{},
 };
 
 const TABLE_DEFAULTS = {
   party: [
-    ["Maid of Honor","","","","",""],["Bridesmaid","","","","",""],["Bridesmaid","","","","",""],
-    ["Bridesmaid","","","","",""],["Bridesmaid","","","","",""],
-    ["Best Man","","","","",""],["Groomsman","","","","",""],["Groomsman","","","","",""],
-    ["Groomsman","","","","",""],["Groomsman","","","","",""],
+    ["Maid of Honor","Carly Hester","817-300-6041","","",""],
+    ["Bridesmaid","Amanda Thomas","817-901-4540","","",""],
+    ["Bridesmaid","Christina","661-878-2890","","",""],
+    ["Bridesmaid","Maddie","973-713-4288","","",""],
+    ["Best Man","Ian Vickers","","","",""],
+    ["Groomsman","Jared Johnson","","","",""],
+    ["Groomsman","Cliff Bourland","","","",""],
+    ["Groomsman","","","","",""],
     ["Flower Girl","","","","",""],["Ring Bearer","","","","",""],
-    ["Officiant","","","","",""],
+    ["Officiant","","","","","Not documented in vendor contracts — confirm and add"],
   ],
   vendors: [
-    ["The Gardenia - Venue","","817-623-5300","hunter@thegardeniavenue.com","","","10am-11pm"],
-    ["Shakers - Bar","Cylie Bowery","817-873-2880","cylie@shakerbarandbev.com","","",""],
-    ["Farah - Catering","Stephanie Ozcan","","hi@ferahcatering.com","","",""],
-    ["ShootemupSam Photography","Samuel McClary","214-477-3999","samtheman1968@hotmail.com","","","Services for four (4) hours VW photo bus plus gas pump photo booth; 4:30-5:30. Plan for 1.5–2 hours beforehand to ensure everything is ready as your preferred start time arrives."],
-    ["Eli Lyon Film Co. Photos","Eli","972-804-3665","","","",""],
-    ["Kiss and Makeup DFW","Channing Donahue","817-507-5955","info@kissandmakeupdfw.com","","",""],
-    ["Chuck Vending","","972-214-9473","","","","Start: 10/23/2027 4:00pm — End: 10/23/2027 10:00pm"],
-    ["Braden Daniels - Magician","Braden Daniels","","braden@bradendaniels.com","","",""],
-    ["Wedding Coordinator","Maddie","","","","",""],
-    ["DJ Connection","","972-408-6580","","","",""],
+    ["The Gardenia - Venue","Hunter Scheffler","817-247-0174","hunter@thegardeniavenue.com","10:00 AM (rental begins)","11:00 PM (11:30 PM if extension confirmed)","Rental window 10:00 AM–11:00 PM; last hour reserved for cleanup. Extra hours $250/hr."],
+    ["Shakers - Bar","Cylie Bowery","817-873-2880","cylie@shakerbarandbev.com","~4:30 PM (1–2 hrs before service)","~10:30–11:00 PM (30–90 min cleanup)","Contracted service window 6:00–10:00 PM"],
+    ["Farah - Catering","Stephanie Ozcan","281-773-4690","hi@ferahcatering.com","~3:00 PM (2-hr kitchen setup)","9:00 PM","Passed apps 5:15–6:00 PM; buffet dinner 6:15–8:00 PM; bussing/cleanup ~8:00–9:00 PM"],
+    ["ShootemupSam Photography","Samuel McClary","214-477-3999","samtheman1968@hotmail.com","~5:30 PM (assumed — hours not confirmed on contract)","~10:30 PM (assumed)","Services for four (4) hours VW photo bus plus gas pump photo booth. Plan for 1.5–2 hours beforehand to ensure everything is ready as your preferred start time arrives."],
+    ["Eli Lyon Film Co. Photos","Elizabeth Lyon (Eli)","972-804-3665","","1:00 PM","9:00 PM","Booking portal: book.usesession.com/b/paezycF9Eq. Includes a 2nd shooter for the full wedding."],
+    ["Kiss and Makeup DFW","Channing Donahue","817-507-5955","info@kissandmakeupdfw.com","8:30 AM","1:00 PM",""],
+    ["Chuck Vending","Office/Dispatch","972-214-9473","","~3:30–4:00 PM (drop-off delivery)","Vendor pickup, may be next day","Start: 10/23/2027 4:00pm — End: 10/23/2027 10:00pm"],
+    ["Braden Daniels - Magician","Braden Daniels","","braden@bradendaniels.com","TBD","","No signed contract on file — confirm booking, timing, and cost. Likely cocktail hour (tentative)."],
+    ["Wedding Coordinator","Madelysse Dam","817-308-8681","tnmevents2023@gmail.com","~12:30 PM (walkthrough, vendor check-ins)","~10:30–11:30 PM (post-event vendor check-out)","T&M Events — 10 contracted hours"],
+    ["DJ Connection","Office/Dispatch (djconnection.com)","972-408-6580","","Setup 1:30 PM","~11:00–11:30 PM","Active 3:30–11:00 PM. Governed by Oklahoma law — tell them T&M Events has day-of change authority."],
+    ["Officiant","","","","","","Not documented in vendor contracts — confirm name, contact, and Texas marriage-officiant licensing."],
+    ["Florist","","","","","","No signed contract on file — only the venue's floral guideline sheet. Confirm booking."],
+    ["Security Guard","","","","","","Required by venue for the full event. Must be booked 30+ days out with proof sent to the venue — not yet confirmed."],
   ],
   masterTodo: [
     [false,""],[false,""],[false,""],[false,""],[false,""],
   ],
   vipGuests: [["","","",""]],
   mealCounts: [["Chicken",""],["Beef",""],["Vegetarian",""],["Kids Meal",""]],
-  processional: [["1","",""],["2","",""],["3","",""]],
-  toasts: [["1","",""],["2","",""],["3","",""]],
-  runofshow_bride: HOURS().map(h=>[h,""]),
+  processional: [
+    ["1","Officiant","Processional begins"],
+    ["2","Groom & Groomsmen","Enter"],
+    ["3","Bridesmaids","Enter"],
+    ["4","Flower Girl & Ring Bearer","Enter"],
+    ["5","Bride (with escort)","Enter — confirm a flat, clear aisle path for the wheelchair"],
+    ["—","Officiant","Welcome / opening words"],
+    ["—","Reader (assign in advance)","Reading(s), if desired"],
+    ["—","Officiant","Message / story of the couple"],
+    ["—","Bride & Groom","Vow exchange"],
+    ["—","Bride & Groom","Ring exchange"],
+    ["—","Bride & Groom","Unity ritual, if desired (TBD — decide with officiant)"],
+    ["—","Officiant","Pronouncement & first kiss"],
+    ["—","Bride & Groom + Wedding Party","Recessional — fake petals only, per venue rule"],
+  ],
+  toasts: [
+    ["1","Best Man","Groomsman"],
+    ["2","Maid of Honor","Bridesmaid"],
+    ["3","Parent(s) (optional)","Family"],
+  ],
+  runofshow_bride: [
+    ["7:30 AM","Wake up; wheelchair transfer and morning care routine, hydrate, light breakfast","[ACCESS BUFFER] — no rushing"],
+    ["8:00 AM","Nails/last touch-ups if needed; pack venue bags","Bride + MOH"],
+    ["8:30 AM","Hair & Makeup team (Kiss and Makeup DFW) arrives","Confirm exact arrival — not set on contract; arrive with clean, dry hair"],
+    ["8:30–9:00 AM","Bridesmaids and moms arrive with their outfits",""],
+    ["9:00 AM–1:00 PM","Hair & makeup rotation — bridesmaids/moms first, bride finishes last","2 stylists recommended for a group of 6"],
+    ["9:30–10:00 AM","Travel to venue","[ACCESS BUFFER] — extra time for wheelchair loading/unloading"],
+    ["10:00 AM","The Gardenia opens (rental window begins); vendor load-in starts",""],
+    ["10:00–10:30 AM","Arrive at venue, settle into getting-ready suite, transfer & bathroom break","[ACCESS BUFFER] — confirm accessible restroom location in advance"],
+    ["10:30 AM–1:00 PM","Hair & makeup continues on-site if needed",""],
+    ["1:00 PM","Photographer + 2nd shooter arrive; begin detail shots — dress, rings, invitations, bouquet, shoes","Contracted start time"],
+    ["1:00–1:15 PM","Wheelchair transfer & bathroom break before getting dressed","[ACCESS BUFFER]"],
+    ["1:15–1:45 PM","Bride gets dressed (photographed)",""],
+    ["1:45–2:15 PM","Bride solo portraits + bridesmaid candids",""],
+    ["2:15–2:45 PM","Bride + bridesmaids group photos",""],
+    ["2:45–3:15 PM","Bride + full wedding party photos (no groom)",""],
+    ["3:15–3:45 PM","Bride + family photos — parents, siblings, grandparents","Groom's family photos happen in parallel on his side"],
+    ["3:45–4:00 PM","Final wheelchair transfer/bathroom break, touch-ups, bustle check","[ACCESS BUFFER]"],
+    ["4:00–4:15 PM","Bride + wedding party step out of guest view before the processional",""],
+    ["4:15 PM","Guests arrive and are seated",""],
+    ["4:25 PM","Bride + escort move into position at the aisle entrance","Confirm ramp/flat surface for wheelchair entrance"],
+    ["4:30 PM","CEREMONY BEGINS",""],
+    ["~5:00 PM","Ceremony ends; recessional",""],
+    ["5:00–5:15 PM","Wheelchair transfer & bathroom break right after the ceremony","[ACCESS BUFFER]"],
+    ["5:15–6:00 PM","Cocktail hour: family + wedding party photos, then Bride & Groom portraits together for the first time",""],
+    ["6:00 PM","Reception doors open; guests seated",""],
+    ["6:05 PM","Grand entrance — wedding party, then Bride & Groom",""],
+    ["6:10 PM","Welcome toast",""],
+    ["6:15 PM","Buffet dinner service begins","Consider having a server plate the couple's food rather than the buffet line"],
+    ["~7:00 PM","Toasts/speeches — Best Man, Maid of Honor, optional parent toasts",""],
+    ["7:15 PM","First dance, father-daughter dance, mother-son dance",""],
+    ["7:30 PM","Dance floor opens to all guests",""],
+    ["8:00 PM","Wheelchair transfer & bathroom break, timed within open dancing","[ACCESS BUFFER] — flexible, take when needed"],
+    ["8:30 PM","Cake cutting","Photographer's coverage ends 9:00 PM — keep this before then"],
+    ["9:00 PM","Photographer coverage ends","Confirm in advance if extending coverage"],
+    ["9:00–10:00 PM","Continued dancing, photo booth, games/magician, bar service",""],
+    ["10:00 PM","Bar last call — contracted end at 10:00 PM",""],
+    ["10:15 PM","Last dance",""],
+    ["10:20 PM","Final wheelchair transfer & bathroom break before send-off","[ACCESS BUFFER]"],
+    ["10:30 PM","Planned send-off — sparklers/bubbles per venue rules","Confetti, rice, and lanterns are not permitted"],
+    ["10:30–11:00 PM","Guests depart; DJ/bar/catering/photo booth breakdown",""],
+    ["11:00–11:30 PM","Couple + coordinator final walkthrough, gifts/décor loaded, final exit","Requires the confirmed 30-minute extension — see Contracts page flag"],
+    ["11:30 PM","Final exit",""],
+  ],
   runofshow_groom: HOURS().map(h=>[h,""]),
-  runofshow_master: HOURS().map(h=>[h,""]),
-  vendorArrivals: [["","",""]],
+  runofshow_master: [
+    ["The Gardenia (Venue)","10:00 AM (rental begins)","10:00 AM–10:00 PM (event)","10:00–11:00 PM (reserved cleanup)","11:00 PM (11:30 PM if extension confirmed)","Floor plan due 15 days prior; broom-clean checkout with the venue manager required"],
+    ["T&M Events (Coordinator)","~12:30 PM (walkthrough, vendor check-ins)","All day","Post-event vendor check-out","~10:30–11:30 PM","10 contracted hours — confirm exact arrival with Madelysse; extra time may cost more"],
+    ["Kiss and Makeup DFW","8:30 AM","8:30 AM–1:00 PM","—","1:00 PM","Confirm exact arrival — blank on the contract"],
+    ["Eli Lyon Film Co (Photographer)","1:00 PM","1:00–9:00 PM","Pack out","9:00 PM","2nd shooter on the same window; confirm if extra hours wanted for full send-off coverage"],
+    ["DJ Connection","1:30 PM (setup)","3:30 PM ceremony music start – 11:00 PM","~30–45 min pack-down","~11:00–11:30 PM","Needs 2 grounded 120V/15-20A outlets within 25 ft — venue has none to lend. T&M Events has day-of change authority."],
+    ["Ferah Catering & Events","~3:00 PM (2-hr kitchen setup)","Passed apps 5:15–6:00 PM; buffet dinner 6:15–8:00 PM","Bussing/cleanup ~8:00–9:00 PM","9:00 PM","Host must provide 1 vendor meal for Gardenia staff. Caterer buses/cleans all trash — no onsite dishwashing."],
+    ["Shaker Bar & Bev","~4:30 PM (1–2 hrs before service)","6:00–10:00 PM","30–90 min cleanup","~10:30–11:00 PM","No bar service currently contracted for the 5:15–6:00 PM cocktail hour — request a 5:00 PM start"],
+    ["ShootemUpSam Photo Bus","~5:30 PM (assumed)","~6:00–10:00 PM (assumed 4-hr package)","~30 min","~10:30 PM","Actual hours are blank on the contract — confirm directly with the vendor"],
+    ["Chuck Vending","~3:30–4:00 PM (drop-off delivery)","4:00–10:00 PM","Vendor pickup, may be next day","—","Needs grounded 110V/20A circuits within 50–100 ft — confirm the exact circuit plan with the venue"],
+    ["Officiant","~3:45 PM","Ceremony, 4:30–5:00 PM","—","After ceremony","Not documented in the vendor contracts — confirm name, contact, and TX marriage-officiant licensing"],
+    ["Security Guard","Coverage for the full event","Full event","—","—","Must be booked 30+ days out with proof sent to the venue — not yet confirmed"],
+    ["Magician (Braden Daniels)","TBD","Likely cocktail hour, 5:15–6:00 PM (tentative)","—","—","No signed contract found — confirm booking, timing, and cost"],
+  ],
+  vendorArrivals: [
+    ["The Gardenia (Venue)","10:00 AM","Hunter Scheffler, 817-247-0174"],
+    ["T&M Events (Coordinator)","~12:30 PM","Madelysse Dam, 817-308-8681"],
+    ["Kiss and Makeup DFW (Hair/Makeup)","8:30 AM","Channing Donahue, 817-507-5955"],
+    ["Eli Lyon Film Co (Photography)","1:00 PM","via booking portal"],
+    ["DJ Connection","Setup 1:30 PM","djconnection.com"],
+    ["Ferah Catering & Events","~3:00 PM","Stephanie Ozcan, 281-773-4690"],
+    ["ShootemUpSam Photo Bus","~5:30 PM (unconfirmed)","Samuel McClary, 214-477-3999"],
+    ["Shaker Bar & Bev Co","~4:30 PM","Cylie Bowery, 817-873-2880"],
+    ["Chuck Vending","~3:30–4:00 PM (drop-off)","972-214-9473"],
+    ["Magician (Braden Daniels)","TBD","braden@bradendaniels.com"],
+  ],
 };
 
 function HOURS(){
@@ -1234,11 +1418,94 @@ PAGE_BUILDERS.vendors = (c)=>{
   c.appendChild(card);
 };
 
+PAGE_BUILDERS.contracts = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("People")]),
+    el("h2",{},[document.createTextNode("Contracts & Important Info")]),
+    el("div",{class:"desc"},[document.createTextNode("Condensed from every signed vendor contract, so nobody has to dig through PDFs to answer a question on the day. Full contract files live in the \"pdf contracts\" folder.")]),
+  ]));
+
+  const timeline = el("div",{class:"card"});
+  timeline.appendChild(el("h3",{},[document.createTextNode("Payment & Deadline Timeline")]));
+  timeline.innerHTML += "<p style='font-size:13px;line-height:2'>"+
+    "<b>3/13/2026</b> — ShootemUpSam Photo Bus deposit PAID ($150)<br>"+
+    "<b>4/21/2026</b> — Shaker Bar & Bev 2nd payment PAID ($1,811.77)<br>"+
+    "<b>4/22/2026</b> — Ferah Catering \"Second Payment\" due ($2,500) — flagged below, predates the contract's own signature date<br>"+
+    "<b>~6/25/2027</b> — Venue (Gardenia) final balance due (120 days before the event)<br>"+
+    "<b>8/23/2027</b> — ShootemUpSam Photo Bus balance due ($1,275) — 60 days before the event<br>"+
+    "<b>9/23/2027</b> — Ferah Catering Third Payment due ($1,014.44); also the deadline to finalize Ferah's menu/services<br>"+
+    "<b>10/9/2027</b> — Shaker Bar & Bev balance due ($1,552.96); Eli Lyon Film Co (photographer) balance due; Chuck Vending balance likely due here too (date not printed — confirm)<br>"+
+    "<b>10/16/2027</b> — Ferah Catering remaining balance due ($1,757.22) AND DJ Connection balance due ($900) — same day, plan cash flow<br>"+
+    "<b>10/18/2027</b> — T&M Events coordinator balance due ($700) — the Monday before the wedding<br>"+
+    "<b>10/23/2027</b> — WEDDING DAY</p>";
+  c.appendChild(timeline);
+
+  const total = el("div",{class:"card"});
+  total.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Contracted Total So Far")]));
+  total.appendChild(el("p",{class:"note"},[document.createTextNode("Venue $9,682.00 + Catering $7,028.88 + Bar $5,176.50 + Photography $3,187.50 + Photo Booth $1,425.00 + Hair & Makeup $1,741.00 + DJ $1,200.00 + Vending $433.00 + Coordinator $800.00 = roughly $30,674 across the 9 vendors with signed contracts. Florist, security guard, officiant, wedding bands, and required insurance are still open and not included in this total.")]));
+  c.appendChild(total);
+
+  const vendorCards = [
+    ["Venue — The Gardenia Venue", "Hunter Scheffler · Hunter@TheGardeniaVenue.com · 817-247-0174",
+      "gardenia venue.pdf (8 pages) · Signed 10/6/2025 · Rate $9,682.00",
+      "Rental window 10:00am–11:00pm; last hour reserved for cleanup. Extra hours $250/hr. Payment: 40% non-refundable retainer at signing, next 40% between signing and final due date, final 20% due ~6/25/2027 (120 days before). No refunds for cancellation or postponement, ever. Includes reception barn, chapel, outdoor ceremony site, string-light courtyard, cocktail porch, 300 cross-back chairs, tables, prep kitchen, parking, floor plan tool (due 15 days before), a $250 linens/tableware credit if rented through the venue/Tastefully Yours, and a 1-hour rehearsal (subject to availability). NOT included: bartender, linens, DJ/band, catering, alcohol, photography, florist, bakery, security, coordinator. Requires $1M general liability from host + every vendor, event cancellation insurance, and $1M alcohol liability insurance. Requires a security guard booked 30+ days out with proof sent to the venue. Requires a professional day-of coordinator (satisfied by T&M Events). Max occupancy 300. No confetti/rice/birdseed/balloons/lanterns/glitter (fake petals OK); candles enclosed in glass, flame 2\" below rim; no smoking/vaping indoors. Host must provide one vendor meal for Gardenia staff."],
+    ["Catering — Ferah Catering and Events", "Stephanie Ozcan · hi@ferahcatering.com · 281-773-4690",
+      "6 pages, Invoice #56186887 · Signed 4/30/2026",
+      "Saturday 10/23/2027, 5:00–9:00pm, 120 guests (30 fewer than the Bar contract's 150 — confirm real headcount). Elevate Buffet $45/guest: passed apps (mac & cheese bites w/ bacon, maple pecan chicken skewers w/ honey dijon — contains nuts, bruschetta - vegetarian), dinner buffet (Greek salad, chicken breast w/ basil chardonnay cream, beef shish kebab w/ tzatziki, penne alfredo, grilled veggies, free yeast rolls). Kids 12 & under half price. Beverages/bar NOT included. Cake cutting is a free gift — you provide the cake, they cut/serve on disposable plates; decide real vs. display cake and whether to save the top tier. Staffing: 4 servers, 6 hours (2 setup/2 service/1 cleanup); extra time $100/half hour. You provide your own plates/cutlery/napkins. Grand Total $7,028.88 — Deposit 25% ($1,757.22) PAID 2/13/2026; Second Payment $2,500 due 4/22/2026 (flagged — predates the 4/30/2026 signature date); Third Payment $1,014.44 due 9/23/2027; Remaining Balance $1,757.22 due 10/16/2027. Total unpaid: $5,271.66. Cancellation: 14+ days written notice required, all prior payments non-refundable, late payments 3%/week."],
+    ["Bar Service — Shaker Bar & Bev Co", "Cylie Bowery · cylie@shakerbarandbev.com · 817-873-2880 (also after-hours/emergency)",
+      "8 pages · Signed 10/7/2025",
+      "Saturday 10/23/2027, 6:00–10:00pm, 150 guests (30 more than Catering's 120 — confirm real headcount). Premium Call Bar $24/guest: Tito's, Jack Daniels + Jameson, Bacardi Silver + Malibu, Tanqueray Gin, Espolon Silver + 1800 Reposado; 1 premium + 2 domestic beers; house red/white wine; full mixer package. 2 bartenders x 7.5 hrs. Grand Total $5,176.50 — two $1,811.77 Zelle payments PAID (10/7/2025 and 4/21/2026); Balance $1,552.96 due 10/9/2027 (14 days before). Final headcount due 2 weeks before; after 7 days before, the count can't be reduced. No shots/rocks/doubles/neats — all drinks measured and mixed. No outside alcohol (they can stop service entirely and you forfeit all payments if it appears). Cancellation: 90+ days out = retainer forfeited only; 30–14 days = 75% forfeited; under 14 days = no refund."],
+    ["Photography — Eli Lyon Film Co (\"BLUSH\" Wedding Photography)", "Elizabeth Lyon · book.usesession.com/b/paezycF9Eq · 972-804-3665",
+      "Effective 9/25/2025",
+      "Saturday 10/23/2027, 1:00–9:00pm (8 hours). Includes a 2nd photographer, a sneak-peek gallery within 48 hours, and a full 500+ image gallery within 8 weeks. Images archived by the photographer for only 365 days after the wedding — download and back up your own copies before ~October 2028. Total $3,187.50 + tax — Retainer $1,062.50 PAID; remaining balance due 10/9/2027 (14 days before). Cancellation: 5+ days notice required or full payment is still owed; all paid fees non-refundable. Photographer keeps full copyright — don't filter/alter images before posting, and tag the photographer. Coverage ends 9:00pm, an hour before the bar/photo booth and two hours before the DJ — confirm this doesn't clip the end-of-night send-off."],
+    ["Photo Booth — ShootemUpSam Photography / VW Photo Bus", "Samuel McClary · samtheman1968@hotmail.com · 214-477-3999",
+      "4 pages",
+      "Apple Green & White 1974 VW Bus (\"Sweet P\"). Set-up/Start/End time fields are BLANK on the signed form — confirm exact booked hours with the vendor before the day. 4 hours of VW photo bus + gas pump photo booth, onsite attendant, unlimited 4x6 prints, digital file of all photos afterward. Additional hours $175/hr beyond the 4-hour window. Cost $1,425.00 total ($1,350 Love Package + Gas Pump Booth + $75 travel fee) — Deposit $150 PAID 3/13/2026; Balance $1,275.00 due 8/23/2027 (60 days before — \"client risks losing the event date\" if unpaid). Cancellation: deposit non-refundable if cancelled within 30 days of the event. Signature/witness date lines appear blank on the saved copy — confirm a fully executed version exists."],
+    ["Hair & Makeup — Kiss and Makeup DFW", "Channing Donahue · info@kissandmakeupdfw.com · 817-507-5955",
+      "3 pages · Signed 2/20–2/21/2026",
+      "Saturday 10/23/2027 at The Gardenia. Total $1,741.00. Retainer is listed two ways ($174.10 flat vs. \"25% initial retainer\" which would be $435.25) — confirm which figure is correct. Remaining-balance due date references a schedule that isn't actually included in the file — get the real payment schedule from the vendor. Additional services can be added up to 30 days before the event; contracted services can't be removed. Arrive with clean, dry hair — extra drying time billed as overtime at $95/hour. Travel beyond 25 miles billed at $0.68/mile. Cancellation: no fees returned if the event is cancelled outright; 2nd payment still owed if cancelled less than 1 month before the date."],
+    ["Wedding Coordinator — T&M Events (\"Month of Coordination\")", "Madelysse Dam · tnmevents2023@gmail.com · 817-308-8681",
+      "4 pages · Signed 4/1–4/3/2026",
+      "This contract satisfies the venue's required professional day-of coordinator — make sure T&M's contact info has been given to the Gardenia. Minimum 1 consultation + 4 meetings before the event, unlimited email/phone, 10 hours of Day-of Coordination, timeline creation, month-of vendor management, final venue walkthrough, day-of onsite rehearsal, setup/breakdown assistance. T&M does NOT bus tables (Ferah's contract covers that) — a $200 fee applies if asked to anyway. Cost $800 total — Deposit $100 (non-refundable) due at signing; Balance $700 due the Monday before the event (10/18/2027). $50 fee for a returned check or a date/time change. Cancellation within 60 days of the event: at least 50% of the remaining balance owed."],
+    ["Vending / Games — Chuck Vending", "Office · 972-214-9473",
+      "Invoice #59083661, 4 pages · Ordered/signed 3/17/2026",
+      "10/23/2027, 4:00–10:00pm, drop-off delivery. \"Claw After Dark\" claw machine ($350) + free Customer Sticker Vending Machine (\"The Sticker Bar\", 60 stickers via a bridal-show promo). Future add-ons discussed but not priced: rubber ducks + ~100 total prizes, ~200 total custom stickers. Current pricing is locked in even if rates rise before the wedding. Billing: $433 total ($350 + $50 distance + tax) — $100 paid, $333 balance due (no printed due date — confirm with vendor). Needs grounded 110v/20amp circuits within 50–100ft (form currently shows \"0\" — confirm the actual power plan). Cancellation: 10 days notice required; $50 fee if cancelled within 10 days; no refunds if paid in full except weather cancellations (credited/refunded)."],
+    ["DJ — DJ Connection", "Office/Dispatch · djconnection.com · 972-408-6580",
+      "3 pages, Contract #451654 / Account #579958",
+      "Saturday 10/23/2027, Ceremony & Reception, Package 1. Setup 1:30pm, Start 3:30pm, End 11:00pm (flexible per your timeline). Unlimited time until midnight, DJ/MC/Host, full sound system, dance lighting, 4 free uplights. Your Price $1,200 (after Bridal Show + Preferred Venue discounts) — $300 deposit (25%, non-refundable) PAID; Balance $900 due 10/16/2027 (7 days before — same day as Ferah's final balance). Music/timeline requests due through DJ Connection's portal at the \"finalizing call,\" usually 7–10 days before — tell them T&M Events (Madelysse Dam) has day-of change authority. Needs 2 grounded 120V/15-20amp outlets within 25ft (venue has none to lend). Governed by Oklahoma law, unlike every other Texas-based vendor. Signature page appears blank on the saved copy despite referencing \"digital signing\" — confirm an executed version exists."],
+  ];
+
+  vendorCards.forEach(([title, contact, fileInfo, body])=>{
+    const card = el("div",{class:"card"});
+    card.appendChild(el("h3",{},[document.createTextNode(title)]));
+    card.innerHTML += "<p class='note' style='margin-bottom:2px'>"+contact+"</p>"+
+      "<p class='note' style='margin-bottom:10px'>"+fileInfo+"</p>"+
+      "<p style='font-size:13px;line-height:1.7'>"+body+"</p>";
+    c.appendChild(card);
+  });
+
+  const rules = el("div",{class:"card"});
+  rules.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Venue Guideline Sheets (Not Separate Vendor Contracts)")]));
+  rules.innerHTML += "<p style='font-size:13px;line-height:1.8'>"+
+    "<b>Catering:</b> Caterers use the right-side vendor door only; must send proof of license/insurance. Venue provides a fridge, ice machine, and folding buffet tables only. Onsite frying must be 12ft from the building; caterer buses/cleans ALL trash and leaves the space broom-clean.<br>"+
+    "<b>DJ/Band:</b> Bring your own table, power strips, and extension cords. Fog/sparklers/CO2/LED effects need prior approval; confetti cannons are banned. Only painter's tape may secure cords. Bring your own speakers — the venue's built-ins aren't for wedding use.<br>"+
+    "<b>Decor & Floral:</b> All delivery/setup/pickup within the 10am–11pm window. 4 arches + a wooden cross available (copper arch max 10 lbs) — command hooks/twine/zip ties only. Aisle petals must be fake and picked up before the event ends. Chandeliers/string lights may NOT be decorated.<br>"+
+    "<b>Engagement/Bridal Photoshoots:</b> Monday/Tuesday only at the venue; hair/makeup done offsite; bring your own photographer.<br>"+
+    "<b>Tables:</b> 10 cocktail tables, 6 large farmhouse tables, 24 round tables, 2 small farmhouse tables, 5 buffet tables, 1 round farmhouse entry table. Linens are NOT included in the rental.</p>";
+  c.appendChild(rules);
+
+  const flags = el("div",{class:"card"});
+  flags.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Open Flags & Action Items")]));
+  flags.appendChild(el("p",{class:"note"},[document.createTextNode("Everything below needs a confirmation, a signature, or a decision before the wedding. Check items off as they're resolved.")]));
+  renderSimpleChecklist(flags,"contractFlags",[{group:"Resolve Before the Wedding", items:CONTRACT_FLAGS}]);
+  c.appendChild(flags);
+};
+
 PAGE_BUILDERS.todo = (c)=>{
   c.appendChild(el("div",{class:"page-head"},[
     el("span",{class:"kicker"},[document.createTextNode("Planning")]),
     el("h2",{},[document.createTextNode("Timeline & To-Do Checklist")]),
-    el("div",{class:"desc"},[document.createTextNode("120 tasks organized by how far out they are — check things off as you go. Owner tags show who's driving each task.")]),
+    el("div",{class:"desc"},[document.createTextNode("150 tasks organized by how far out they are — check things off as you go. Owner tags show who's driving each task.")]),
   ]));
   const card = el("div",{class:"card"});
   card.appendChild(el("div",{class:"progress-wrap"},[el("div",{class:"progress-bar", id:"todoProgressBar"})]));
@@ -1275,6 +1542,42 @@ PAGE_BUILDERS.guests = (c)=>{
   card3.appendChild(el("p",{class:"note"},[document.createTextNode("Anyone whose RSVP status you want to track by name without opening the spreadsheet.")]));
   renderTable(card3,"vipGuests",[{label:"Name"},{label:"Side"},{label:"Group"},{label:"RSVP / Notes"}]);
   c.appendChild(card3);
+};
+
+PAGE_BUILDERS.registry = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Planning")]),
+    el("h2",{},[document.createTextNode("Gift Registry")]),
+    el("div",{class:"desc"},[document.createTextNode("The wish list, plus where to register and a few curated non-toxic/organic picks worth adding.")]),
+  ]));
+
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h3",{},[document.createTextNode("Wish List")]));
+  renderSimpleChecklist(card,"registryItems",REGISTRY_ITEMS);
+  c.appendChild(card);
+
+  const card2 = el("div",{class:"card"});
+  card2.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Where to Register")]));
+  card2.appendChild(el("p",{class:"note"},[document.createTextNode("Target · Amazon · Home Depot · Scheels · Bed Bath & Beyond · Kohl's · Pottery Barn · Belk · Ulta · Macy's · Walmart · IKEA")]));
+  card2.appendChild(el("p",{class:"note"},[document.createTextNode("Many boutique bedding/kitchen brands below don't list on Amazon/Target directly — a universal registry tool like Zola or Blueprint Registry can pull everything into one place.")]));
+  c.appendChild(card2);
+
+  const card3 = el("div",{class:"card"});
+  card3.appendChild(el("h3",{},[document.createTextNode("Style Inspiration")]));
+  card3.innerHTML += "<p style='font-size:13px;line-height:1.8'>"+
+    "Victorian English Pottery — Royal Stafford, Skull (Replacements, Ltd.)<br>"+
+    "Death Lovers Skeleton Wedding Return Address Label (Zazzle) — pairs with the \"Order return address stamps\" to-do item</p>";
+  c.appendChild(card3);
+
+  const card4 = el("div",{class:"card"});
+  card4.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Curated Non-Toxic / Organic Picks")]));
+  card4.appendChild(el("p",{class:"note"},[document.createTextNode("A theme worth registering around: organic/GOTS-certified materials and PFAS/PTFE-free kitchenware.")]));
+  card4.innerHTML += "<p style='font-size:13px;line-height:1.9'>"+
+    "<b>Sleep Quality</b> — Organic bedding: Boll & Branch, Coyuchi, Avocado, or Birch sheets (GOTS/OEKO-TEX certified). Organic mattress topper: Avocado or Coyuchi. Natural wool or latex pillows. White noise machine: SNOOZ or Hatch Restore 3. Sleep mask: Therabody SleepMask. 100% blackout curtains.<br>"+
+    "<b>Non-Toxic Kitchen Appliances</b> — Glass air fryer: Ninja Crispi or Fritaire (PFAS/PTFE-free). Non-toxic cookware: Caraway ceramic set, or a Lodge/Stargazer cast iron skillet.<br>"+
+    "<b>Plastic-Free Food Storage</b> — Caraway ceramic-coated glass set, Ziruma borosilicate glass containers, Hydro Flask stainless steel containers, Stasher silicone reusable bags.<br>"+
+    "<b>Low-Tox Home Upgrades</b> — HEPA + carbon air purifier (e.g. Coway Airmega), water filter pitcher or under-sink filter (removes PFAS/heavy metals), wool dryer balls.</p>";
+  c.appendChild(card4);
 };
 
 PAGE_BUILDERS.ceremony = (c)=>{
@@ -1451,17 +1754,18 @@ PAGE_BUILDERS.runofshow = (c)=>{
     el("div",{class:"desc"},[document.createTextNode("A sample framework below, then three fillable hour-by-hour timelines — for the bride's side, the groom's side, and the master/vendor-facing schedule.")]),
   ]));
   const sample = el("div",{class:"card"});
-  sample.appendChild(el("h3",{},[document.createTextNode("Sample Day-Of Framework")]));
+  sample.appendChild(el("h3",{},[document.createTextNode("Quick-Glance Framework")]));
   sample.innerHTML += "<p style='font-size:13px;line-height:2'>"+
-    "10:00 AM — Preparation for ceremony &nbsp;·&nbsp; 2:00 PM — Family & bridal party portraits &nbsp;·&nbsp; 3:00 PM — Pre-ceremony photography<br>"+
-    "4:00 PM — Ceremony &nbsp;·&nbsp; 5:00 PM — Cocktail hour &nbsp;·&nbsp; 6:00 PM — Reception begins &nbsp;·&nbsp; 6:30 PM — Dinner served<br>"+
-    "7:00 PM — Bridal portraits &nbsp;·&nbsp; 7:30 PM — First dances &nbsp;·&nbsp; 8:00 PM — Toasts &nbsp;·&nbsp; 8:30 PM — Cake cutting<br>"+
-    "9:00 PM — Garter & bouquet toss &nbsp;·&nbsp; 10:00 PM — Last dance & send-off</p>";
+    "8:30 AM — Hair & makeup begins &nbsp;·&nbsp; 1:00 PM — Photographer arrives, detail shots & bridal portraits &nbsp;·&nbsp; 4:15 PM — Guests seated<br>"+
+    "4:30 PM — Ceremony &nbsp;·&nbsp; 5:15 PM — Cocktail hour & couple portraits &nbsp;·&nbsp; 6:00 PM — Reception begins &nbsp;·&nbsp; 6:15 PM — Dinner served<br>"+
+    "7:15 PM — First dances &nbsp;·&nbsp; 8:30 PM — Cake cutting &nbsp;·&nbsp; 10:30 PM — Send-off &nbsp;·&nbsp; 11:30 PM — Final exit<br>"+
+    "No first look — family/wedding party photos happen before the ceremony; the couple's own portraits happen together for the first time during cocktail hour. No travel time is needed between ceremony and reception — same site.</p>";
   c.appendChild(sample);
 
   const b1 = el("div",{class:"card"});
   b1.appendChild(el("h3",{},[document.createTextNode("Bride & Bridal Party Timeline")]));
-  renderTable(b1,"runofshow_bride",[{label:"Time",readonly:true},{label:"Activity"}]);
+  b1.appendChild(el("p",{class:"note"},[document.createTextNode("[ACCESS BUFFER] marks time built in for wheelchair transfers and bathroom breaks — please protect it rather than filling it with \"one more thing.\" See the Accessibility Notes page.")]));
+  renderTable(b1,"runofshow_bride",[{label:"Time"},{label:"Activity"},{label:"Notes"}]);
   c.appendChild(b1);
 
   const b2 = el("div",{class:"card"});
@@ -1471,7 +1775,10 @@ PAGE_BUILDERS.runofshow = (c)=>{
 
   const b3 = el("div",{class:"card"});
   b3.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Master / Vendor-Facing Timeline")]));
-  renderTable(b3,"runofshow_master",[{label:"Time",readonly:true},{label:"Activity"}]);
+  b3.appendChild(el("p",{class:"note"},[document.createTextNode("Built from each signed contract's stated hours, cross-checked against the timeline above. Items marked TBD/assumed should be confirmed directly with the vendor.")]));
+  renderTable(b3,"runofshow_master",[
+    {label:"Vendor"},{label:"Arrival / Setup"},{label:"Active / Use Window"},{label:"Breakdown"},{label:"Depart"},{label:"Notes"},
+  ]);
   c.appendChild(b3);
 };
 
@@ -1495,6 +1802,50 @@ PAGE_BUILDERS.emergency = (c)=>{
   renderSimpleChecklist(c2,"nightGroom",[{group:"Pack", items:NIGHT_GROOM}]);
   two.appendChild(c2);
   c.appendChild(two);
+};
+
+PAGE_BUILDERS.accessibility = (c)=>{
+  c.appendChild(el("div",{class:"page-head"},[
+    el("span",{class:"kicker"},[document.createTextNode("Wedding Day")]),
+    el("h2",{},[document.createTextNode("Accessibility Notes")]),
+    el("div",{class:"desc"},[document.createTextNode("For our coordinator, family, and wedding party.")]),
+  ]));
+
+  const intro = el("div",{class:"card"});
+  intro.appendChild(el("p",{style:"font-size:13.5px;line-height:1.7"},[document.createTextNode("Nichole is a wheelchair user and moves at a different pace than an able-bodied person. Every timeline in this binder already has extra buffer time built in for transfers, bathroom breaks, and unhurried movement — please protect that buffer rather than filling it in with \"one more thing.\"")]));
+  c.appendChild(intro);
+
+  const confirm = el("div",{class:"card"});
+  confirm.appendChild(el("h3",{},[document.createTextNode("Please Confirm Ahead of the Day")]));
+  const ulConfirm = el("div");
+  ulConfirm.innerHTML = "<p style='font-size:13.5px;line-height:1.9'>"+
+    "• Ceremony aisle and reception dance floor are flat, wide, and rollable — no gravel, soft grass, or loose petals in the rolling path. Flag with the venue (Hunter Scheffler) and florist.<br>"+
+    "• At least one accessible, ground-level restroom near both the getting-ready space and the reception barn. Get its exact location confirmed and shared with the bridal party and coordinator.<br>"+
+    "• Accessible parking / drop-off closest to the getting-ready entrance and the ceremony site.<br>"+
+    "• Ramp access at every threshold Nichole will cross that day: getting-ready room, ceremony aisle, reception barn, restroom.<br>"+
+    "• A reserved, wheelchair-accessible spot at the head table / sweetheart table and at the edge of the dance floor, so she isn't seated apart from the wedding party.</p>";
+  confirm.appendChild(ulConfirm);
+  c.appendChild(confirm);
+
+  const build = el("div",{class:"card"});
+  build.appendChild(el("h3",{class:"purple-h"},[document.createTextNode("Please Build Into the Day-Of Plan")]));
+  const ulBuild = el("div");
+  ulBuild.innerHTML = "<p style='font-size:13.5px;line-height:1.9'>"+
+    "• Dedicated transfer + bathroom-break windows before getting dressed, before the processional, and before final exit — already placed in the Master Timeline and marked <b>[ACCESS BUFFER]</b>.<br>"+
+    "• A short \"recovery buffer\" after high-exertion moments (processional, first dance, cake cutting) in case of fatigue or the need for a break — also marked in the timeline.<br>"+
+    "• Ask the photographer to plan low-angle / eye-level shots that don't require repeated repositioning, and to keep the aisle photo lane clear and flat for the wheelchair.<br>"+
+    "• If accessible transportation is needed to/from the getting-ready location or hotel, confirm it in advance (see the To-Do page).</p>";
+  build.appendChild(ulBuild);
+  c.appendChild(build);
+
+  const links = el("div",{class:"card"});
+  links.appendChild(el("h3",{},[document.createTextNode("Where This Shows Up Elsewhere")]));
+  links.innerHTML += "<p style='font-size:13px;line-height:1.9'>"+
+    "• Every [ACCESS BUFFER] tag → <b>Day-Of Run of Show</b> page, Bride & Bridal Party Timeline<br>"+
+    "• Accessible transportation & honeymoon accessibility to-dos → <b>Timeline & To-Do Checklist</b> page<br>"+
+    "• Wheelchair cushion & repair kit → <b>Emergency Kit & Night Bags</b> page<br>"+
+    "• Restroom/aisle/dance-floor confirmations → also tracked as a flag on the <b>Contracts & Important Info</b> page</p>";
+  c.appendChild(links);
 };
 
 PAGE_BUILDERS.coordinator = (c)=>{
@@ -1536,6 +1887,8 @@ PAGE_BUILDERS.coordinator = (c)=>{
     "• Full Run of Show → <b>Day-Of Run of Show</b> page<br>"+
     "• Every vendor + contract status → <b>Vendors & Points of Contact</b> page<br>"+
     "• Wedding Party contact info & attire → <b>Wedding Party & VIPs</b> page<br>"+
+    "• Every contract's payment schedule, cancellation terms, and open flags → <b>Contracts & Important Info</b> page<br>"+
+    "• Wheelchair-accessibility requirements → <b>Accessibility Notes</b> page — please read this one<br>"+
     "• Seating chart & menu → <b>Reception Details</b> page<br>"+
     "• Ceremony order & music → <b>Ceremony Details</b> / <b>Music & Entertainment</b> pages<br>"+
     "• Décor placement checklists → <b>Décor Checklist</b> page<br>"+
